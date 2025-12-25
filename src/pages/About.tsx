@@ -111,7 +111,7 @@ export const About: React.FC = () => {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 to-purple-600 text-white py-20">
+      <section className="relative bg-gradient-to-br from-orange-500 to-orange-600 text-white py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl lg:text-6xl mb-6">{t('about.title')}</h1>
@@ -166,7 +166,7 @@ export const About: React.FC = () => {
                   whileHover={{ y: -10 }}
                   className="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl transition-all"
                 >
-                  <div className="text-blue-600 flex justify-center mb-4">
+                  <div className="text-orange-500 flex justify-center mb-4">
                     {value.icon}
                   </div>
                   <h3 className="text-xl text-gray-900 mb-3">{value.title}</h3>
@@ -210,13 +210,13 @@ export const About: React.FC = () => {
                   <div className="p-6">
                     <p className="text-gray-600 mb-4">{member.bio}</p>
                     <div className="flex space-x-4">
-                      <a href={member.linkedin} className="text-gray-400 hover:text-blue-600 transition-colors">
+                      <a href={member.linkedin} className="text-gray-400 hover:text-orange-500 transition-colors">
                         <Linkedin className="w-5 h-5" />
                       </a>
-                      <a href={member.twitter} className="text-gray-400 hover:text-blue-600 transition-colors">
+                      <a href={member.twitter} className="text-gray-400 hover:text-orange-500 transition-colors">
                         <Twitter className="w-5 h-5" />
                       </a>
-                      <a href={`mailto:${member.email}`} className="text-gray-400 hover:text-blue-600 transition-colors">
+                      <a href={`mailto:${member.email}`} className="text-gray-400 hover:text-orange-500 transition-colors">
                         <Mail className="w-5 h-5" />
                       </a>
                     </div>
@@ -265,14 +265,14 @@ export const About: React.FC = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-center text-white">
+            <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-12 text-center text-white">
               <h2 className="text-4xl lg:text-5xl mb-6">Join Our Team</h2>
               <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
                 We're always looking for talented individuals to join our growing team
               </p>
               <a
                 href="/contact"
-                className="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
+                className="inline-block bg-white text-orange-500 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
               >
                 View Open Positions
               </a>

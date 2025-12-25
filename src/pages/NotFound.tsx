@@ -5,7 +5,7 @@ import { Home, ArrowLeft } from 'lucide-react';
 
 export const NotFound: React.FC = () => {
   return (
-    <div className="min-h-screen pt-20 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+    <div className="min-h-screen pt-20 bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -28,14 +28,14 @@ export const NotFound: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/"
-              className="inline-flex items-center justify-center space-x-2 bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all"
+              className="inline-flex items-center justify-center space-x-2 bg-white text-orange-500 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all"
             >
               <Home className="w-5 h-5" />
               <span>Go Home</span>
             </Link>
             <button
               onClick={() => window.history.back()}
-              className="inline-flex items-center justify-center space-x-2 border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-blue-600 transition-all"
+              className="inline-flex items-center justify-center space-x-2 border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-orange-500 transition-all"
             >
               <ArrowLeft className="w-5 h-5" />
               <span>Go Back</span>

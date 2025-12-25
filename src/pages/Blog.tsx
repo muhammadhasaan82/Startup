@@ -92,7 +92,7 @@ export const Blog: React.FC = () => {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 to-purple-600 text-white py-20">
+      <section className="relative bg-gradient-to-br from-orange-500 to-orange-600 text-white py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl lg:text-6xl mb-6">Our Blog</h1>
@@ -124,7 +124,7 @@ export const Blog: React.FC = () => {
             <Link to={`/blog/${featuredPost.id}`}>
               <motion.div
                 whileHover={{ y: -10 }}
-                className="grid lg:grid-cols-2 gap-8 bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all"
+                className="grid lg:grid-cols-2 gap-8 bg-gradient-to-br from-orange-50 to-purple-50 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all"
               >
                 <div className="relative h-96 lg:h-auto">
                   <ImageWithFallback
@@ -139,7 +139,7 @@ export const Blog: React.FC = () => {
                 <div className="p-8 lg:p-12 flex flex-col justify-center">
                   <div className="flex flex-wrap gap-2 mb-4">
                     {featuredPost.tags.map((tag, idx) => (
-                      <span key={idx} className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">
+                      <span key={idx} className="px-3 py-1 bg-orange-100 text-orange-500 rounded-full text-sm">
                         {tag}
                       </span>
                     ))}
@@ -160,7 +160,7 @@ export const Blog: React.FC = () => {
                       <span className="text-sm">{featuredPost.readTime}</span>
                     </div>
                   </div>
-                  <div className="flex items-center text-blue-600 group">
+                  <div className="flex items-center text-orange-500 group">
                     <span className="mr-2">Read Article</span>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                   </div>
@@ -183,7 +183,7 @@ export const Blog: React.FC = () => {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-6 py-3 rounded-lg transition-all capitalize ${
                   selectedCategory === cat
-                    ? 'bg-blue-600 text-white shadow-lg'
+                    ? 'bg-orange-500 text-white shadow-lg'
                     : 'bg-white text-gray-700 hover:bg-gray-100'
                 }`}
               >
@@ -215,7 +215,7 @@ export const Blog: React.FC = () => {
                     <div className="p-6 flex-1 flex flex-col">
                       <div className="flex flex-wrap gap-2 mb-3">
                         {post.tags.slice(0, 2).map((tag, idx) => (
-                          <span key={idx} className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs">
+                          <span key={idx} className="px-3 py-1 bg-orange-50 text-orange-500 rounded-full text-xs">
                             {tag}
                           </span>
                         ))}
@@ -232,7 +232,7 @@ export const Blog: React.FC = () => {
                           <span>{post.readTime}</span>
                         </div>
                       </div>
-                      <div className="flex items-center text-blue-600 group">
+                      <div className="flex items-center text-orange-500 group">
                         <span className="mr-2">Read More</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                       </div>
@@ -255,7 +255,7 @@ export const Blog: React.FC = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-center text-white">
+            <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-12 text-center text-white">
               <h2 className="text-4xl lg:text-5xl mb-6">Subscribe to Our Newsletter</h2>
               <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
                 Get the latest articles and insights delivered directly to your inbox
@@ -268,7 +268,7 @@ export const Blog: React.FC = () => {
                 />
                 <button
                   type="submit"
-                  className="bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all flex items-center space-x-2"
+                  className="bg-white text-orange-500 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all flex items-center space-x-2"
                 >
                   <span>Subscribe</span>
                 </button>

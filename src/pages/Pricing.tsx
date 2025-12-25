@@ -93,7 +93,7 @@ export const Pricing: React.FC = () => {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 to-purple-600 text-white py-20">
+      <section className="relative bg-gradient-to-br from-orange-500 to-orange-600 text-white py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl lg:text-6xl mb-6">{t('nav.pricing')}</h1>
@@ -107,7 +107,7 @@ export const Pricing: React.FC = () => {
                 onClick={() => setBillingCycle('monthly')}
                 className={`px-6 py-3 rounded-lg transition-all ${
                   billingCycle === 'monthly'
-                    ? 'bg-white text-blue-600'
+                    ? 'bg-white text-orange-500'
                     : 'text-white hover:bg-white/10'
                 }`}
               >
@@ -117,7 +117,7 @@ export const Pricing: React.FC = () => {
                 onClick={() => setBillingCycle('yearly')}
                 className={`px-6 py-3 rounded-lg transition-all relative ${
                   billingCycle === 'yearly'
-                    ? 'bg-white text-blue-600'
+                    ? 'bg-white text-orange-500'
                     : 'text-white hover:bg-white/10'
                 }`}
               >
@@ -141,7 +141,7 @@ export const Pricing: React.FC = () => {
                   whileHover={{ y: -10 }}
                   className={`rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all h-full flex flex-col ${
                     plan.popular
-                      ? 'bg-gradient-to-br from-blue-600 to-purple-600 text-white border-4 border-yellow-400 relative'
+                      ? 'bg-gradient-to-br from-orange-500 to-orange-600 text-white border-4 border-yellow-400 relative'
                       : 'bg-white border border-gray-200'
                   }`}
                 >
@@ -161,7 +161,7 @@ export const Pricing: React.FC = () => {
                   </div>
 
                   <div className="mb-8">
-                    <div className={`text-5xl mb-2 ${plan.popular ? 'text-white' : 'text-blue-600'}`}>
+                    <div className={`text-5xl mb-2 ${plan.popular ? 'text-white' : 'text-orange-500'}`}>
                       ${billingCycle === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice}
                       <span className="text-xl">/{billingCycle === 'monthly' ? 'mo' : 'yr'}</span>
                     </div>
@@ -201,8 +201,8 @@ export const Pricing: React.FC = () => {
                     to="/contact"
                     className={`block text-center px-8 py-4 rounded-lg transition-all ${
                       plan.popular
-                        ? 'bg-white text-blue-600 hover:bg-gray-100'
-                        : 'bg-blue-600 text-white hover:bg-blue-700'
+                        ? 'bg-white text-orange-500 hover:bg-gray-100'
+                        : 'bg-orange-500 text-white hover:bg-orange-600'
                     }`}
                   >
                     Get Started
@@ -233,7 +233,7 @@ export const Pricing: React.FC = () => {
                 >
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg text-gray-900">{addon.name}</h3>
-                    <div className="text-2xl text-blue-600">${addon.price}</div>
+                    <div className="text-2xl text-orange-500">${addon.price}</div>
                   </div>
                 </motion.div>
               </AnimatedSection>
@@ -254,7 +254,7 @@ export const Pricing: React.FC = () => {
 
           <div className="overflow-x-auto">
             <table className="w-full max-w-6xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
-              <thead className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+              <thead className="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
                 <tr>
                   <th className="px-6 py-4 text-left">Feature</th>
                   <th className="px-6 py-4 text-center">Starter</th>
@@ -334,7 +334,7 @@ export const Pricing: React.FC = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-center text-white">
+            <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-12 text-center text-white">
               <h2 className="text-4xl lg:text-5xl mb-6">Still Have Questions?</h2>
               <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
                 Our team is here to help you choose the perfect plan for your business
@@ -342,14 +342,14 @@ export const Pricing: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center space-x-2 bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
+                  className="inline-flex items-center justify-center space-x-2 bg-white text-orange-500 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
                 >
                   <span>Contact Sales</span>
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <a
                   href="tel:+15551234567"
-                  className="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-blue-600 transition-all"
+                  className="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-orange-500 transition-all"
                 >
                   Call Us: +1 (555) 123-4567
                 </a>

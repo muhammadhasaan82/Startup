@@ -87,7 +87,7 @@ export const Services: React.FC = () => {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 to-purple-600 text-white py-20">
+      <section className="relative bg-gradient-to-br from-orange-500 to-orange-600 text-white py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl lg:text-6xl mb-6">{t('services.title')}</h1>
@@ -126,12 +126,12 @@ export const Services: React.FC = () => {
                       <ul className="space-y-2 mb-6">
                         {service.features.slice(0, 3).map((feature, idx) => (
                           <li key={idx} className="flex items-center text-gray-600 text-sm">
-                            <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2" />
+                            <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2" />
                             {feature}
                           </li>
                         ))}
                       </ul>
-                      <div className="flex items-center text-blue-600 group hover:text-purple-600 transition-colors">
+                      <div className="flex items-center text-orange-500 group hover:text-orange-600 transition-colors">
                         <span className="mr-2">Learn More</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                       </div>
@@ -166,7 +166,7 @@ export const Services: React.FC = () => {
                   whileHover={{ y: -10 }}
                   className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all"
                 >
-                  <div className="text-5xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                  <div className="text-5xl bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent mb-4">
                     {item.step}
                   </div>
                   <h3 className="text-xl text-gray-900 mb-3">{item.title}</h3>
@@ -182,7 +182,7 @@ export const Services: React.FC = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-center text-white">
+            <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-12 text-center text-white">
               <h2 className="text-4xl lg:text-5xl mb-6">Ready to Get Started?</h2>
               <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
                 Let's discuss your project and how we can help bring your vision to life
@@ -190,14 +190,14 @@ export const Services: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   to="/contact"
-                  className="bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 inline-flex items-center justify-center space-x-2"
+                  className="bg-white text-orange-500 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 inline-flex items-center justify-center space-x-2"
                 >
                   <span>Contact Us</span>
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
                   to="/pricing"
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-blue-600 transition-all inline-flex items-center justify-center"
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-orange-500 transition-all inline-flex items-center justify-center"
                 >
                   View Pricing
                 </Link>

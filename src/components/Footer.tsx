@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
             className="space-y-4"
           >
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
                 <span className="text-white">NT</span>
               </div>
               <span className="text-xl text-white">NexGen Tech</span>
@@ -37,19 +37,19 @@ export const Footer: React.FC = () => {
               {t('footer.tagline')}
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="hover:text-blue-500 transition-colors">
+              <a href="#" className="hover:text-orange-500 transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-blue-500 transition-colors">
+              <a href="#" className="hover:text-orange-500 transition-colors">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-blue-500 transition-colors">
+              <a href="#" className="hover:text-orange-500 transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-blue-500 transition-colors">
+              <a href="#" className="hover:text-orange-500 transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-blue-500 transition-colors">
+              <a href="#" className="hover:text-orange-500 transition-colors">
                 <Youtube className="w-5 h-5" />
               </a>
             </div>
@@ -64,12 +64,12 @@ export const Footer: React.FC = () => {
           >
             <h3 className="text-white mb-4">{t('footer.company')}</h3>
             <ul className="space-y-2">
-              <li><Link to="/about" className="hover:text-blue-500 transition-colors">About Us</Link></li>
-              <li><Link to="/about#team" className="hover:text-blue-500 transition-colors">Our Team</Link></li>
-              <li><Link to="/about#partners" className="hover:text-blue-500 transition-colors">Partners</Link></li>
-              <li><Link to="/portfolio" className="hover:text-blue-500 transition-colors">Portfolio</Link></li>
-              <li><Link to="/blog" className="hover:text-blue-500 transition-colors">Blog</Link></li>
-              <li><Link to="/contact" className="hover:text-blue-500 transition-colors">Contact</Link></li>
+              <li><Link to="/about" className="hover:text-orange-500 transition-colors">About Us</Link></li>
+              <li><Link to="/about#team" className="hover:text-orange-500 transition-colors">Our Team</Link></li>
+              <li><Link to="/about#partners" className="hover:text-orange-500 transition-colors">Partners</Link></li>
+              <li><Link to="/portfolio" className="hover:text-orange-500 transition-colors">Portfolio</Link></li>
+              <li><Link to="/blog" className="hover:text-orange-500 transition-colors">Blog</Link></li>
+              <li><Link to="/contact" className="hover:text-orange-500 transition-colors">Contact</Link></li>
             </ul>
           </motion.div>
 
@@ -82,12 +82,12 @@ export const Footer: React.FC = () => {
           >
             <h3 className="text-white mb-4">{t('footer.services')}</h3>
             <ul className="space-y-2">
-              <li><Link to="/services/web-development" className="hover:text-blue-500 transition-colors">Web Development</Link></li>
-              <li><Link to="/services/mobile-app" className="hover:text-blue-500 transition-colors">Mobile Apps</Link></li>
-              <li><Link to="/services/ecommerce" className="hover:text-blue-500 transition-colors">E-commerce</Link></li>
-              <li><Link to="/services/seo" className="hover:text-blue-500 transition-colors">SEO Services</Link></li>
-              <li><Link to="/services/social-media" className="hover:text-blue-500 transition-colors">Social Media</Link></li>
-              <li><Link to="/services/blockchain" className="hover:text-blue-500 transition-colors">Blockchain</Link></li>
+              <li><Link to="/services/web-development" className="hover:text-orange-500 transition-colors">Web Development</Link></li>
+              <li><Link to="/services/mobile-app" className="hover:text-orange-500 transition-colors">Mobile Apps</Link></li>
+              <li><Link to="/services/ecommerce" className="hover:text-orange-500 transition-colors">E-commerce</Link></li>
+              <li><Link to="/services/seo" className="hover:text-orange-500 transition-colors">SEO Services</Link></li>
+              <li><Link to="/services/social-media" className="hover:text-orange-500 transition-colors">Social Media</Link></li>
+              <li><Link to="/services/blockchain" className="hover:text-orange-500 transition-colors">Blockchain</Link></li>
             </ul>
           </motion.div>
 
@@ -107,13 +107,13 @@ export const Footer: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your email"
-                  className="w-full bg-gray-800 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-800 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   required
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
+                className="w-full bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors flex items-center justify-center space-x-2"
               >
                 <span>Subscribe</span>
                 <Send className="w-4 h-4" />
@@ -122,15 +122,15 @@ export const Footer: React.FC = () => {
             
             <div className="mt-6 space-y-3">
               <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-blue-500" />
+                <Mail className="w-5 h-5 text-orange-500" />
                 <span>info@nexgentech.com</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-blue-500" />
+                <Phone className="w-5 h-5 text-orange-500" />
                 <span>+1 (555) 123-4567</span>
               </div>
               <div className="flex items-center space-x-3">
-                <MapPin className="w-5 h-5 text-blue-500" />
+                <MapPin className="w-5 h-5 text-orange-500" />
                 <span>123 Tech Street, Digital City</span>
               </div>
             </div>
@@ -146,13 +146,13 @@ export const Footer: React.FC = () => {
               © 2025 NexGen Tech. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              <Link to="/privacy" className="text-gray-400 hover:text-blue-500 transition-colors">
+              <Link to="/privacy" className="text-gray-400 hover:text-orange-500 transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="text-gray-400 hover:text-blue-500 transition-colors">
+              <Link to="/terms" className="text-gray-400 hover:text-orange-500 transition-colors">
                 Terms of Service
               </Link>
-              <Link to="/sitemap" className="text-gray-400 hover:text-blue-500 transition-colors">
+              <Link to="/sitemap" className="text-gray-400 hover:text-orange-500 transition-colors">
                 Sitemap
               </Link>
             </div>

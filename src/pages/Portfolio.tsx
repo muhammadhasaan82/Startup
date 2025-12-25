@@ -73,7 +73,7 @@ export const Portfolio: React.FC = () => {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 to-purple-600 text-white py-20">
+      <section className="relative bg-gradient-to-br from-orange-500 to-orange-600 text-white py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl lg:text-6xl mb-6">Our Portfolio</h1>
@@ -96,7 +96,7 @@ export const Portfolio: React.FC = () => {
                 onClick={() => setFilter(cat)}
                 className={`px-6 py-3 rounded-lg transition-all capitalize ${
                   filter === cat
-                    ? 'bg-blue-600 text-white shadow-lg'
+                    ? 'bg-orange-500 text-white shadow-lg'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -136,7 +136,7 @@ export const Portfolio: React.FC = () => {
                         {project.tags.map((tag, idx) => (
                           <span
                             key={idx}
-                            className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm"
+                            className="px-3 py-1 bg-orange-50 text-orange-500 rounded-full text-sm"
                           >
                             {tag}
                           </span>
@@ -155,14 +155,14 @@ export const Portfolio: React.FC = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-center text-white">
+            <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-12 text-center text-white">
               <h2 className="text-4xl lg:text-5xl mb-6">Start Your Project Today</h2>
               <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
                 Ready to create something amazing? Let's bring your vision to life
               </p>
               <Link
                 to="/contact"
-                className="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
+                className="inline-block bg-white text-orange-500 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
               >
                 Get Started
               </Link>

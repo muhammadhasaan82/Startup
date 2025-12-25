@@ -281,7 +281,7 @@ export const Home: React.FC = () => {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-4xl lg:text-5xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                <div className="text-4xl lg:text-5xl bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent mb-2">
                   {stat.number}
                 </div>
                 <div className="text-gray-600">{stat.label}</div>
@@ -321,7 +321,7 @@ export const Home: React.FC = () => {
                     <div className="p-6">
                       <h3 className="text-xl text-gray-900 mb-3">{service.title}</h3>
                       <p className="text-gray-600 mb-4">{service.description}</p>
-                      <div className="flex items-center text-blue-600 group-hover:text-purple-600 transition-colors">
+                      <div className="flex items-center text-orange-500 group-hover:text-orange-600 transition-colors">
                         <span className="mr-2">Learn More</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                       </div>
@@ -335,7 +335,7 @@ export const Home: React.FC = () => {
           <div className="text-center mt-12">
             <Link
               to="/services"
-              className="inline-flex items-center space-x-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center space-x-2 bg-orange-500 text-white px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors"
             >
               <span>View All Services</span>
               <ArrowRight className="w-5 h-5" />
@@ -426,7 +426,7 @@ export const Home: React.FC = () => {
           <div className="text-center mt-12">
             <Link
               to="/portfolio"
-              className="inline-flex items-center space-x-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center space-x-2 bg-orange-500 text-white px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors"
             >
               <span>View All Projects</span>
               <ArrowRight className="w-5 h-5" />
@@ -436,7 +436,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+      <section className="py-20 bg-gradient-to-br from-orange-500 to-orange-600 text-white">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl mb-4">What Our Clients Say</h2>
@@ -481,7 +481,7 @@ export const Home: React.FC = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-center text-white">
+            <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-12 text-center text-white">
               <h2 className="text-4xl lg:text-5xl mb-6">Ready to Start Your Project?</h2>
               <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
                 Let's discuss how we can help transform your business with cutting-edge digital solutions
@@ -489,14 +489,14 @@ export const Home: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   to="/contact"
-                  className="bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 inline-flex items-center justify-center space-x-2"
+                  className="bg-white text-orange-500 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 inline-flex items-center justify-center space-x-2"
                 >
                   <span>Get Started Now</span>
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
                   to="/pricing"
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-blue-600 transition-all inline-flex items-center justify-center"
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-orange-500 transition-all inline-flex items-center justify-center"
                 >
                   View Pricing
                 </Link>

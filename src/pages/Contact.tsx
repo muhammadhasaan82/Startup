@@ -37,7 +37,7 @@ export const Contact: React.FC = () => {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 to-purple-600 text-white py-20">
+      <section className="relative bg-gradient-to-br from-orange-500 to-orange-600 text-white py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl lg:text-6xl mb-6">{t('contact.title')}</h1>
@@ -68,7 +68,7 @@ export const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                       placeholder="John Doe"
                     />
                   </div>
@@ -84,7 +84,7 @@ export const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                       placeholder="john@example.com"
                     />
                   </div>
@@ -99,7 +99,7 @@ export const Contact: React.FC = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                       placeholder="+1 (555) 123-4567"
                     />
                   </div>
@@ -114,7 +114,7 @@ export const Contact: React.FC = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                     >
                       <option value="">Select a subject</option>
                       <option value="web">Website Development</option>
@@ -137,7 +137,7 @@ export const Contact: React.FC = () => {
                       onChange={handleChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none"
                       placeholder="Tell us about your project..."
                     />
                   </div>
@@ -147,7 +147,7 @@ export const Contact: React.FC = () => {
                     whileTap={{ scale: 0.98 }}
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-orange-500 text-white px-8 py-4 rounded-lg hover:bg-orange-600 transition-all flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <span>{isSubmitting ? 'Sending...' : t('contact.send')}</span>
                     <Send className="w-5 h-5" />
@@ -173,16 +173,16 @@ export const Contact: React.FC = () => {
                     whileHover={{ x: 10 }}
                     className="flex items-start space-x-4 p-6 bg-blue-50 rounded-xl"
                   >
-                    <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Mail className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <h3 className="text-gray-900 mb-1">Email Us</h3>
-                      <a href="mailto:info@nexgentech.com" className="text-blue-600 hover:text-blue-700">
+                      <a href="mailto:info@nexgentech.com" className="text-orange-500 hover:text-orange-600">
                         info@nexgentech.com
                       </a>
                       <br />
-                      <a href="mailto:support@nexgentech.com" className="text-blue-600 hover:text-blue-700">
+                      <a href="mailto:support@nexgentech.com" className="text-orange-500 hover:text-orange-600">
                         support@nexgentech.com
                       </a>
                     </div>
@@ -192,16 +192,16 @@ export const Contact: React.FC = () => {
                     whileHover={{ x: 10 }}
                     className="flex items-start space-x-4 p-6 bg-purple-50 rounded-xl"
                   >
-                    <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Phone className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <h3 className="text-gray-900 mb-1">Call Us</h3>
-                      <a href="tel:+15551234567" className="text-purple-600 hover:text-purple-700">
+                      <a href="tel:+15551234567" className="text-orange-600 hover:text-purple-700">
                         +1 (555) 123-4567
                       </a>
                       <br />
-                      <a href="tel:+15559876543" className="text-purple-600 hover:text-purple-700">
+                      <a href="tel:+15559876543" className="text-orange-600 hover:text-purple-700">
                         +1 (555) 987-6543
                       </a>
                     </div>
