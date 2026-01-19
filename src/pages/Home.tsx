@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, CheckCircle2, Quote, Star } from 'lucide-react';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useTheme } from '../contexts/ThemeContext';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { TypewriterText } from '../components/TypewriterText';
 import {
@@ -17,6 +18,15 @@ import {
 
 export const Home: React.FC = () => {
   const { t } = useLanguage();
+  const { theme } = useTheme();
+
+  // Dark mode classes
+  const sectionBg = theme === 'dark' ? 'bg-[#0f0f0f]' : 'bg-white';
+  const sectionBgAlt = theme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-gray-50';
+  const textPrimary = theme === 'dark' ? 'text-white' : 'text-gray-900';
+  const textSecondary = theme === 'dark' ? 'text-gray-300' : 'text-gray-600';
+  const textMuted = theme === 'dark' ? 'text-gray-400' : 'text-gray-700';
+  const cardBg = theme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-white';
   const [carouselApi, setCarouselApi] = React.useState<CarouselApi>();
   const [currentSlide, setCurrentSlide] = React.useState(0);
 
@@ -286,7 +296,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* Stats Section */}
-      <AnimatedSection className="bg-white py-16">
+      <AnimatedSection className={`${sectionBg} py-16`}>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -301,7 +311,7 @@ export const Home: React.FC = () => {
                 <div className="text-4xl lg:text-5xl bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent mb-2">
                   {stat.number}
                 </div>
-                <div className="text-gray-600">{stat.label}</div>
+                <div className={textSecondary}>{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -309,11 +319,11 @@ export const Home: React.FC = () => {
       </AnimatedSection>
 
       {/* Services Section */}
-      <section className="py-20 bg-gray-50">
+      <section className={`py-20 ${sectionBgAlt}`}>
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl text-gray-900 mb-4">{t('services.title')}</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <h2 className={`text-4xl lg:text-5xl ${textPrimary} mb-4`}>{t('services.title')}</h2>
+            <p className={`text-xl ${textSecondary} max-w-2xl mx-auto`}>
               {t('services.subtitle')}
             </p>
           </AnimatedSection>
@@ -324,7 +334,7 @@ export const Home: React.FC = () => {
                 <Link to={service.link}>
                   <motion.div
                     whileHover={{ y: -10 }}
-                    className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group"
+                    className={`${cardBg} rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group`}
                   >
                     <div className="relative h-48 overflow-hidden">
                       <ImageWithFallback
@@ -336,8 +346,8 @@ export const Home: React.FC = () => {
                       <div className="absolute bottom-4 left-4 text-4xl">{service.icon}</div>
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl text-gray-900 mb-3">{service.title}</h3>
-                      <p className="text-gray-600 mb-4">{service.description}</p>
+                      <h3 className={`text-xl ${textPrimary} mb-3`}>{service.title}</h3>
+                      <p className={`${textSecondary} mb-4`}>{service.description}</p>
                       <div className="flex items-center text-orange-500 group-hover:text-orange-600 transition-colors">
                         <span className="mr-2">Learn More</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
@@ -362,7 +372,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-white">
+      <section className={`py-20 ${sectionBg}`}>
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <AnimatedSection direction="left">
@@ -373,8 +383,8 @@ export const Home: React.FC = () => {
               />
             </AnimatedSection>
             <AnimatedSection direction="right">
-              <h2 className="text-4xl lg:text-5xl text-gray-900 mb-6">Why Choose NexGen Tech?</h2>
-              <p className="text-xl text-gray-600 mb-8">
+              <h2 className={`text-4xl lg:text-5xl ${textPrimary} mb-6`}>Why Choose NexGen Tech?</h2>
+              <p className={`text-xl ${textSecondary} mb-8`}>
                 We combine technical excellence with creative innovation to deliver digital solutions that exceed expectations.
               </p>
               <div className="space-y-4">
@@ -395,7 +405,7 @@ export const Home: React.FC = () => {
                     className="flex items-start space-x-3"
                   >
                     <CheckCircle2 className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">{item}</span>
+                    <span className={textMuted}>{item}</span>
                   </motion.div>
                 ))}
               </div>
@@ -405,11 +415,11 @@ export const Home: React.FC = () => {
       </section>
 
       {/* Portfolio Preview Section */}
-      <section className="py-20 bg-gray-50">
+      <section className={`py-20 ${sectionBgAlt}`}>
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl text-gray-900 mb-4">Featured Projects</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <h2 className={`text-4xl lg:text-5xl ${textPrimary} mb-4`}>Featured Projects</h2>
+            <p className={`text-xl ${textSecondary} max-w-2xl mx-auto`}>
               Explore our latest work and see how we've helped businesses transform digitally
             </p>
           </AnimatedSection>
@@ -420,7 +430,7 @@ export const Home: React.FC = () => {
                 <Link to={project.link}>
                   <motion.div
                     whileHover={{ y: -10 }}
-                    className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group"
+                    className={`${cardBg} rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group`}
                   >
                     <div className="relative h-64 overflow-hidden">
                       <ImageWithFallback
@@ -495,7 +505,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-white">
+      <section className={`py-20 ${sectionBg}`}>
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-12 text-center text-white">

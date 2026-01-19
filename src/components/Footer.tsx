@@ -3,9 +3,11 @@ import { Link } from 'react-router';
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Phone, MapPin, Send } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useTheme } from '../contexts/ThemeContext';
 
 export const Footer: React.FC = () => {
   const { t } = useLanguage();
+  const { theme } = useTheme();
   const [email, setEmail] = useState('');
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -15,8 +17,12 @@ export const Footer: React.FC = () => {
     setEmail('');
   };
 
+  // Dark mode classes
+  const footerBg = theme === 'dark' ? 'bg-[#0a0a0a]' : 'bg-gray-900';
+  const inputBg = theme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-gray-800';
+
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className={`${footerBg} text-gray-300`}>
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -107,7 +113,7 @@ export const Footer: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your email"
-                  className="w-full bg-gray-800 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className={`w-full ${inputBg} text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500`}
                   required
                 />
               </div>
@@ -119,7 +125,7 @@ export const Footer: React.FC = () => {
                 <Send className="w-4 h-4" />
               </button>
             </form>
-            
+
             <div className="mt-6 space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-orange-500" />

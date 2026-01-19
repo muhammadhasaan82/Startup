@@ -3,17 +3,22 @@ import { Outlet, useLocation } from 'react-router';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { Chatbot } from './Chatbot';
+import { useTheme } from '../contexts/ThemeContext';
 
 export const Layout: React.FC = () => {
   const location = useLocation();
+  const { theme } = useTheme();
 
   // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  const bgColor = theme === 'dark' ? 'bg-[#0f0f0f]' : 'bg-white';
+  const textColor = theme === 'dark' ? 'text-gray-100' : 'text-gray-900';
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className={`min-h-screen flex flex-col ${bgColor} ${textColor} transition-colors duration-300`}>
       <Header />
       <main className="flex-1">
         <Outlet />
