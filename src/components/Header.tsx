@@ -63,11 +63,13 @@ export const Header: React.FC = () => {
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
-              <span className="text-white">NT</span>
+          <Link to="/" className="flex items-center space-x-3">
+            <div className="bg-black px-3 py-2 rounded-md">
+              <span className="text-xl font-bold tracking-wide">
+                <span className={textColorStrong}>Nex</span>
+                <span className="text-orange-500">GenTeck</span>
+              </span>
             </div>
-            <span className={`text-xl ${textColorStrong}`}>NexGenTeck</span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -33,11 +33,13 @@ export const Footer: React.FC = () => {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
-                <span className="text-white">NT</span>
+            <div className="flex items-center">
+              <div className="bg-black px-3 py-2 rounded-md">
+                <span className="text-xl font-bold tracking-wide">
+                  <span className="text-white">Nex</span>
+                  <span className="text-orange-500">GenTeck</span>
+                </span>
               </div>
-              <span className="text-xl text-white">NexGenTeck</span>
             </div>
             <p className="text-gray-400">
               {t('footer.tagline')}
