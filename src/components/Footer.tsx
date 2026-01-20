@@ -36,8 +36,8 @@ export const Footer: React.FC = () => {
             <div className="flex items-center">
               <div className="bg-black px-3 py-2 rounded-md">
                 <span className="text-xl font-bold tracking-wide">
-                  <span className="text-white">Nex</span>
-                  <span className="text-orange-500">GenTeck</span>
+                  <span className="text-orange-500">NexGen</span>
+                  <span className="text-white">Teck</span>
                 </span>
               </div>
             </div>

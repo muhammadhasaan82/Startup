@@ -47,7 +47,6 @@ export const Header: React.FC = () => {
     : (isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm');
 
   const textColor = theme === 'dark' ? 'text-gray-200' : 'text-gray-700';
-  const textColorStrong = theme === 'dark' ? 'text-white' : 'text-gray-900';
   const dropdownBg = theme === 'dark' ? 'bg-gray-800' : 'bg-white';
   const dropdownHover = theme === 'dark' ? 'hover:bg-gray-700' : 'hover:bg-orange-50';
   const borderColor = theme === 'dark' ? 'border-gray-700' : 'border-gray-200';
@@ -66,8 +65,8 @@ export const Header: React.FC = () => {
           <Link to="/" className="flex items-center space-x-3">
             <div className="bg-black px-3 py-2 rounded-md">
               <span className="text-xl font-bold tracking-wide">
-                <span className={textColorStrong}>Nex</span>
-                <span className="text-orange-500">GenTeck</span>
+                <span className="text-orange-500">NexGen</span>
+                <span className="text-white">Teck</span>
               </span>
             </div>
           </Link>
