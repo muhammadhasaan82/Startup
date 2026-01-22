@@ -3,66 +3,99 @@ import { Link } from 'react-router';
 import { motion } from 'motion/react';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export const Portfolio: React.FC = () => {
   const [filter, setFilter] = useState('all');
+  const { t } = useLanguage();
 
-  const categories = ['all', 'web', 'mobile', 'ecommerce', 'marketing', 'blockchain'];
+  const categories = [
+    { key: 'all', label: t('portfolio.filters.all') },
+    { key: 'web', label: t('portfolio.filters.web') },
+    { key: 'mobile', label: t('portfolio.filters.mobile') },
+    { key: 'ecommerce', label: t('portfolio.filters.ecommerce') },
+    { key: 'marketing', label: t('portfolio.filters.marketing') },
+    { key: 'blockchain', label: t('portfolio.filters.blockchain') },
+  ];
 
   const projects = [
     {
       id: 'global-ecommerce',
-      title: 'Global E-commerce Platform',
+      title: t('portfolio.projects.global-ecommerce.title'),
       category: 'ecommerce',
       client: 'RetailCo',
       image: 'https://images.unsplash.com/photo-1727407209320-1fa6ae60ee05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY29tbWVyY2UlMjBzaG9wcGluZ3xlbnwxfHx8fDE3NjQzNDQ4NTV8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      description: 'A comprehensive e-commerce solution handling 10,000+ daily transactions',
-      tags: ['E-commerce', 'React', 'Node.js'],
+      description: t('portfolio.projects.global-ecommerce.description'),
+      tags: [
+        t('portfolio.projects.global-ecommerce.tag1'),
+        t('portfolio.projects.global-ecommerce.tag2'),
+        t('portfolio.projects.global-ecommerce.tag3'),
+      ],
     },
     {
       id: 'corporate-redesign',
-      title: 'Corporate Website Redesign',
+      title: t('portfolio.projects.corporate-redesign.title'),
       category: 'web',
       client: 'TechCorp Inc',
       image: 'https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGNvZGluZ3xlbnwxfHx8fDE3NjQzODYyMDJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      description: 'Modern, responsive website with improved UX and 300% increase in engagement',
-      tags: ['Web Design', 'UX/UI', 'SEO'],
+      description: t('portfolio.projects.corporate-redesign.description'),
+      tags: [
+        t('portfolio.projects.corporate-redesign.tag1'),
+        t('portfolio.projects.corporate-redesign.tag2'),
+        t('portfolio.projects.corporate-redesign.tag3'),
+      ],
     },
     {
       id: 'fitness-app',
-      title: 'Fitness Mobile App',
+      title: t('portfolio.projects.fitness-app.title'),
       category: 'mobile',
       client: 'FitLife',
       image: 'https://images.unsplash.com/photo-1609921212029-bb5a28e60960?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBkZXNpZ258ZW58MXx8fHwxNzY0NDEwODY4fDA&ixlib=rb-4.1.0&q=80&w=1080',
-      description: 'Cross-platform fitness tracking app with 50k+ active users',
-      tags: ['Mobile App', 'React Native', 'Health'],
+      description: t('portfolio.projects.fitness-app.description'),
+      tags: [
+        t('portfolio.projects.fitness-app.tag1'),
+        t('portfolio.projects.fitness-app.tag2'),
+        t('portfolio.projects.fitness-app.tag3'),
+      ],
     },
     {
       id: 'digital-campaign',
-      title: 'Digital Marketing Campaign',
+      title: t('portfolio.projects.digital-campaign.title'),
       category: 'marketing',
       client: 'BrandBoost',
       image: 'https://images.unsplash.com/photo-1557838923-2985c318be48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwbWFya2V0aW5nfGVufDF8fHx8MTc2NDQyNjgzNnww&ixlib=rb-4.1.0&q=80&w=1080',
-      description: 'Integrated marketing campaign resulting in 250% ROI increase',
-      tags: ['Marketing', 'SEO', 'Social Media'],
+      description: t('portfolio.projects.digital-campaign.description'),
+      tags: [
+        t('portfolio.projects.digital-campaign.tag1'),
+        t('portfolio.projects.digital-campaign.tag2'),
+        t('portfolio.projects.digital-campaign.tag3'),
+      ],
     },
     {
       id: 'blockchain-platform',
-      title: 'Blockchain DeFi Platform',
+      title: t('portfolio.projects.blockchain-platform.title'),
       category: 'blockchain',
       client: 'CryptoVentures',
       image: 'https://images.unsplash.com/photo-1666816943035-15c29931e975?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxibG9ja2NoYWluJTIwdGVjaG5vbG9neXxlbnwxfHx8fDE3NjQ0MzExMDh8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      description: 'Decentralized finance platform with smart contract integration',
-      tags: ['Blockchain', 'Web3', 'DeFi'],
+      description: t('portfolio.projects.blockchain-platform.description'),
+      tags: [
+        t('portfolio.projects.blockchain-platform.tag1'),
+        t('portfolio.projects.blockchain-platform.tag2'),
+        t('portfolio.projects.blockchain-platform.tag3'),
+      ],
     },
     {
       id: 'food-delivery',
-      title: 'Food Delivery App',
+      title: t('portfolio.projects.food-delivery.title'),
       category: 'mobile',
       client: 'QuickEats',
       image: 'https://images.unsplash.com/photo-1609921212029-bb5a28e60960?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBkZXNpZ258ZW58MXx8fHwxNzY0NDEwODY4fDA&ixlib=rb-4.1.0&q=80&w=1080',
-      description: 'Real-time food delivery platform with GPS tracking',
-      tags: ['Mobile App', 'Real-time', 'Location'],
+      description: t('portfolio.projects.food-delivery.description'),
+      tags: [
+        t('portfolio.projects.food-delivery.tag1'),
+        t('portfolio.projects.food-delivery.tag2'),
+        t('portfolio.projects.food-delivery.tag3'),
+      ],
     },
   ];
 
@@ -79,9 +112,9 @@ export const Portfolio: React.FC = () => {
         <div className="hero-particles"></div>
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl lg:text-6xl font-bold mb-6">Our Portfolio</h1>
+            <h1 className="text-5xl lg:text-6xl font-bold mb-6">{t('portfolio.page.title')}</h1>
             <p className="text-xl text-white/90">
-              Explore our successful projects and see how we've helped businesses transform digitally
+              {t('portfolio.page.subtitle')}
             </p>
           </AnimatedSection>
         </div>
@@ -93,16 +126,16 @@ export const Portfolio: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-3">
             {categories.map((cat) => (
               <motion.button
-                key={cat}
+                key={cat.key}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setFilter(cat)}
-                className={`px-6 py-3 rounded-lg transition-all capitalize ${filter === cat
+                onClick={() => setFilter(cat.key)}
+                className={`px-6 py-3 rounded-lg transition-all ${filter === cat.key
                     ? 'bg-orange-500 text-white shadow-lg'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
               >
-                {cat}
+                {cat.label}
               </motion.button>
             ))}
           </div>
@@ -158,15 +191,15 @@ export const Portfolio: React.FC = () => {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-12 text-center text-white">
-              <h2 className="text-4xl lg:text-5xl mb-6">Start Your Project Today</h2>
+              <h2 className="text-4xl lg:text-5xl mb-6">{t('portfolio.cta.title')}</h2>
               <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
-                Ready to create something amazing? Let's bring your vision to life
+                {t('portfolio.cta.subtitle')}
               </p>
               <Link
                 to="/contact"
                 className="inline-block bg-white text-orange-500 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
               >
-                Get Started
+                {t('portfolio.cta.button')}
               </Link>
             </div>
           </AnimatedSection>
