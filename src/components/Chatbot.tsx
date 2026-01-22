@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { MessageCircle, X, Send, Bot } from 'lucide-react';
+import { X, Send, Bot } from 'lucide-react';
 
 interface Message {
     id: number;
@@ -113,8 +113,8 @@ export const Chatbot: React.FC = () => {
             {/* Floating Chat Button */}
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full shadow-lg flex items-center justify-center text-white hover:shadow-xl transition-shadow"
-                whileHover={{ scale: 1.1 }}
+                className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 shadow-[0_10px_25px_rgba(249,115,22,0.35)] flex items-center justify-center text-white hover:shadow-[0_12px_30px_rgba(249,115,22,0.45)] transition-shadow"
+                whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label="Open chat"
             >
@@ -131,13 +131,13 @@ export const Chatbot: React.FC = () => {
                         </motion.div>
                     ) : (
                         <motion.div
-                            key="chat"
+                            key="bot"
                             initial={{ rotate: 90, opacity: 0 }}
                             animate={{ rotate: 0, opacity: 1 }}
                             exit={{ rotate: -90, opacity: 0 }}
                             transition={{ duration: 0.2 }}
                         >
-                            <MessageCircle className="w-6 h-6" />
+                            <Bot className="w-6 h-6" />
                         </motion.div>
                     )}
                 </AnimatePresence>
@@ -155,9 +155,6 @@ export const Chatbot: React.FC = () => {
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-4 flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                                <Bot className="w-6 h-6 text-white" />
-                            </div>
                             <div className="flex-1">
                                 <h3 className="text-white font-semibold">AI Assistant</h3>
                                 <div className="flex items-center space-x-2">
