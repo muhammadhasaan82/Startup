@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Bot, MessageSquare, Send, X } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface Message {
     id: number;
@@ -9,6 +10,7 @@ interface Message {
 }
 
 export const Chatbot: React.FC = () => {
+    const { t } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputMessage, setInputMessage] = useState('');
@@ -18,6 +20,18 @@ export const Chatbot: React.FC = () => {
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
+
+    useEffect(() => {
+        if (isOpen && messages.length === 0) {
+            const botGreeting: Message = {
+                id: Date.now(),
+                text: t('chatbot.defaultMessage'),
+                isBot: true,
+                timestamp: new Date(),
+            };
+            setMessages([botGreeting]);
+        }
+    }, [isOpen, t, messages.length]);
 
     const handleSendMessage = async () => {
         if (!inputMessage.trim()) return;
