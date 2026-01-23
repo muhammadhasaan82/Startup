@@ -1,244 +1,179 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { X, Send, Bot } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Bot, MessageSquare, Send, X } from 'lucide-react';
 
 interface Message {
     id: number;
     text: string;
-    sender: 'user' | 'bot';
-    timestamp: string;
+    isBot: boolean;
+    timestamp: Date;
 }
-
-const botResponses: Record<string, string> = {
-    default: "Hello, Welcome to NexGenTeck. I'm your AI assistant, here to help you learn about our services and answer any questions you may have about transforming your business workflow with our reliable remote professionals. How can I assist you today?",
-    services: "We offer a wide range of services including Web Development, Mobile App Development, E-commerce Solutions, SEO Optimization, Social Media Marketing, and Blockchain Development. Would you like to know more about any specific service?",
-    pricing: "Our pricing is flexible and tailored to your specific needs. We offer competitive rates with no hidden costs. Would you like to schedule a free consultation to discuss your project requirements?",
-    contact: "You can reach us at info@nexgenteck.com or call us at +1 (555) 123-4567. We're available Monday to Friday, 9 AM to 6 PM. Would you like us to contact you instead?",
-    hello: "Hello! 👋 How can I help you today?",
-    hi: "Hi there! 👋 How can I assist you today?",
-    help: "I'm here to help! You can ask me about our services, pricing, or how to get in touch with our team. What would you like to know?",
-};
-
-const getResponse = (message: string): string => {
-    const lowerMessage = message.toLowerCase();
-
-    if (lowerMessage.includes('service') || lowerMessage.includes('offer') || lowerMessage.includes('do you do')) {
-        return botResponses.services;
-    }
-    if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('pricing')) {
-        return botResponses.pricing;
-    }
-    if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('phone') || lowerMessage.includes('reach')) {
-        return botResponses.contact;
-    }
-    if (lowerMessage === 'hello' || lowerMessage === 'hey') {
-        return botResponses.hello;
-    }
-    if (lowerMessage === 'hi') {
-        return botResponses.hi;
-    }
-    if (lowerMessage.includes('help')) {
-        return botResponses.help;
-    }
-
-    return "Thank you for your message! Our team will get back to you shortly. In the meantime, feel free to ask about our services, pricing, or how to contact us.";
-};
-
-const formatTime = (): string => {
-    return new Date().toLocaleTimeString('en-US', {
-        hour: 'numeric',
-        minute: '2-digit',
-        hour12: true
-    });
-};
 
 export const Chatbot: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState<Message[]>([
-        {
-            id: 1,
-            text: botResponses.default,
-            sender: 'bot',
-            timestamp: formatTime(),
-        },
-    ]);
-    const [inputValue, setInputValue] = useState('');
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [inputMessage, setInputMessage] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    };
-
     useEffect(() => {
-        scrollToBottom();
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
 
-    const handleSend = () => {
-        if (!inputValue.trim()) return;
+    const handleSendMessage = async () => {
+        if (!inputMessage.trim()) return;
 
         const userMessage: Message = {
-            id: messages.length + 1,
-            text: inputValue,
-            sender: 'user',
-            timestamp: formatTime(),
+            id: Date.now(),
+            text: inputMessage,
+            isBot: false,
+            timestamp: new Date()
         };
 
         setMessages((prev) => [...prev, userMessage]);
-        setInputValue('');
+        const currentMessage = inputMessage;
+        setInputMessage('');
         setIsTyping(true);
 
-        // Simulate bot typing delay
-        setTimeout(() => {
-            const botMessage: Message = {
-                id: messages.length + 2,
-                text: getResponse(inputValue),
-                sender: 'bot',
-                timestamp: formatTime(),
+        try {
+            const response = await fetch(
+                `/api/chatbot?message=${encodeURIComponent(currentMessage)}`
+            );
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.error || `Failed to get response from chatbot: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            const botResponse: Message = {
+                id: Date.now() + 1,
+                text: data.response || "I'm sorry, I couldn't generate a response.",
+                isBot: true,
+                timestamp: new Date()
             };
-            setMessages((prev) => [...prev, botMessage]);
+
+            setMessages((prev) => [...prev, botResponse]);
+        } catch (error) {
+            const errorMessage = error instanceof Error
+                ? error.message
+                : "I apologize, but I'm having trouble connecting to the server. Please make sure the chatbot backend is running and try again.";
+
+            const errorResponse: Message = {
+                id: Date.now() + 1,
+                text: errorMessage,
+                isBot: true,
+                timestamp: new Date()
+            };
+
+            setMessages((prev) => [...prev, errorResponse]);
+        } finally {
             setIsTyping(false);
-        }, 1000 + Math.random() * 1000);
+        }
     };
 
-    const handleKeyPress = (e: React.KeyboardEvent) => {
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            handleSend();
+            handleSendMessage();
         }
     };
 
     return (
         <>
-            {/* Floating Chat Button */}
-            <motion.button
-                onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 shadow-[0_10px_25px_rgba(249,115,22,0.35)] flex items-center justify-center text-white hover:shadow-[0_12px_30px_rgba(249,115,22,0.45)] transition-shadow"
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label="Open chat"
-            >
-                <AnimatePresence mode="wait">
-                    {isOpen ? (
-                        <motion.div
-                            key="close"
-                            initial={{ rotate: -90, opacity: 0 }}
-                            animate={{ rotate: 0, opacity: 1 }}
-                            exit={{ rotate: 90, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                        >
-                            <X className="w-6 h-6" />
-                        </motion.div>
-                    ) : (
-                        <motion.div
-                            key="bot"
-                            initial={{ rotate: 90, opacity: 0 }}
-                            animate={{ rotate: 0, opacity: 1 }}
-                            exit={{ rotate: -90, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                        >
-                            <Bot className="w-6 h-6" />
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </motion.button>
+            <div className="ai-chatbot-container">
+                <button
+                    className={`ai-chatbot-toggle ${isOpen ? 'active' : ''}`}
+                    onClick={() => setIsOpen(!isOpen)}
+                    aria-label="Open AI Chatbot"
+                >
+                    <Bot />
+                    {!isOpen && <span className="pulse-dot"></span>}
+                </button>
 
-            {/* Chat Window */}
-            <AnimatePresence>
                 {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                        transition={{ duration: 0.2 }}
-                        className="fixed bottom-28 right-8 z-50 w-[350px] h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200"
-                    >
-                        {/* Header */}
-                        <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-4 flex items-center space-x-3">
-                            <div className="flex-1">
-                                <h3 className="text-white font-semibold">AI Assistant</h3>
-                                <div className="flex items-center space-x-2">
-                                    <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                                    <span className="text-white/80 text-sm">Online • {messages.length} messages</span>
+                    <div className="ai-chatbot-popover">
+                        <div className="chatbot-header">
+                            <div className="header-info">
+                                <div className="avatar">
+                                    <Bot />
+                                </div>
+                                <div className="header-text">
+                                    <h4>AI Assistant</h4>
+                                    <span className="status">Online • {messages.length} messages</span>
                                 </div>
                             </div>
                             <button
+                                className="close-btn"
                                 onClick={() => setIsOpen(false)}
-                                className="text-white/80 hover:text-white transition-colors"
+                                aria-label="Close Chat"
                             >
-                                <X className="w-5 h-5" />
+                                <X />
                             </button>
                         </div>
 
-                        {/* Messages */}
-                        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
-                            {messages.map((message) => (
-                                <motion.div
-                                    key={message.id}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                                >
-                                    <div
-                                        className={`max-w-[80%] rounded-2xl px-4 py-3 ${message.sender === 'user'
-                                                ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-br-md'
-                                                : 'bg-white text-gray-800 shadow-sm border border-gray-100 rounded-bl-md'
-                                            }`}
-                                    >
-                                        <p className="text-sm leading-relaxed">{message.text}</p>
-                                        <p
-                                            className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white/70' : 'text-gray-400'
-                                                }`}
-                                        >
-                                            {message.timestamp}
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            ))}
-
-                            {/* Typing Indicator */}
-                            {isTyping && (
-                                <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    className="flex justify-start"
-                                >
-                                    <div className="bg-white text-gray-800 shadow-sm border border-gray-100 rounded-2xl rounded-bl-md px-4 py-3">
-                                        <div className="flex space-x-1">
-                                            <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                                            <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                                            <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
-                                        </div>
-                                    </div>
-                                </motion.div>
+                        <div className="chatbot-messages">
+                            {messages.length === 0 && !isTyping && (
+                                <div className="empty-state">
+                                    <MessageSquare className="empty-icon" />
+                                    <p className="empty-text">Start a conversation!</p>
+                                </div>
                             )}
 
+                            {messages.map((message) => (
+                                <div
+                                    key={message.id}
+                                    className={`message ${message.isBot ? 'bot-message' : 'user-message'}`}
+                                >
+                                    <div className="message-content">
+                                        <p>{message.text}</p>
+                                        <span className="message-time">
+                                            {message.timestamp.toLocaleTimeString([], {
+                                                hour: '2-digit',
+                                                minute: '2-digit'
+                                            })}
+                                        </span>
+                                    </div>
+                                </div>
+                            ))}
+
+                            {isTyping && (
+                                <div className="message bot-message typing">
+                                    <div className="message-content">
+                                        <div className="typing-indicator">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                             <div ref={messagesEndRef} />
                         </div>
 
-                        {/* Input Area */}
-                        <div className="p-4 bg-white border-t border-gray-200">
-                            <div className="flex items-center space-x-2">
+                        <div className="chatbot-input">
+                            <div className="input-group">
                                 <input
                                     type="text"
-                                    value={inputValue}
-                                    onChange={(e) => setInputValue(e.target.value)}
-                                    onKeyPress={handleKeyPress}
+                                    value={inputMessage}
+                                    onChange={(e) => setInputMessage(e.target.value)}
+                                    onKeyDown={handleKeyPress}
                                     placeholder="Type your message..."
-                                    className="flex-1 px-4 py-3 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500 text-gray-800 text-sm"
+                                    className="message-input"
                                 />
                                 <button
-                                    onClick={handleSend}
-                                    disabled={!inputValue.trim()}
-                                    className="w-10 h-10 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg transition-shadow"
+                                    onClick={handleSendMessage}
+                                    disabled={!inputMessage.trim()}
+                                    className="send-btn"
+                                    aria-label="Send message"
                                 >
-                                    <Send className="w-5 h-5" />
+                                    <Send />
                                 </button>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
                 )}
-            </AnimatePresence>
+            </div>
         </>
     );
 };
