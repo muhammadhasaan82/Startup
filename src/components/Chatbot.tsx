@@ -113,7 +113,7 @@ export const Chatbot: React.FC = () => {
             {/* Floating Chat Button */}
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 shadow-[0_10px_25px_rgba(249,115,22,0.35)] flex items-center justify-center text-white hover:shadow-[0_12px_30px_rgba(249,115,22,0.45)] transition-shadow"
+                className="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 shadow-[0_10px_25px_rgba(249,115,22,0.35)] flex items-center justify-center text-white hover:shadow-[0_12px_30px_rgba(249,115,22,0.45)] transition-shadow"
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label="Open chat"
@@ -151,7 +151,7 @@ export const Chatbot: React.FC = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="fixed bottom-24 right-6 z-50 w-[350px] h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200"
+                        className="fixed bottom-28 right-8 z-50 w-[350px] h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200"
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-4 flex items-center space-x-3">
