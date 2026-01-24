@@ -16,11 +16,13 @@ export const Layout: React.FC = () => {
   }, [location.pathname]);
 
   const textColor = theme === 'dark' ? 'text-gray-100' : 'text-gray-900';
+  const isHome = location.pathname === '/';
+  const contentThemeClass = isHome ? '' : 'theme-non-home';
 
   return (
     <div className={`site-shell ${textColor} transition-colors duration-300`}>
       <AnimatedBackground />
-      <div className="site-content min-h-screen flex flex-col">
+      <div className={`site-content min-h-screen flex flex-col ${contentThemeClass}`}>
         <Header />
         <main className="flex-1">
           <Outlet />
