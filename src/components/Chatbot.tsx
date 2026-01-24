@@ -48,15 +48,24 @@ export const Chatbot: React.FC = () => {
         setInputMessage('');
         setIsTyping(true);
 
+
         try {
-            const response = await fetch(
-                `/api/chatbot?message=${encodeURIComponent(currentMessage)}`
-            );
+            // API URL: use environment variable for production, fallback for development
+            const apiUrl = import.meta.env.VITE_CHATBOT_API_URL || 'http://localhost:8000';
+
+            const response = await fetch(`${apiUrl}/chat`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: currentMessage }),
+            });
 
             if (!response.ok) {
                 const errorData = await response.json().catch(() => ({}));
-                throw new Error(errorData.error || `Failed to get response from chatbot: ${response.status}`);
+                throw new Error(errorData.detail || `Failed to get response from chatbot: ${response.status}`);
             }
+
 
             const data = await response.json();
 

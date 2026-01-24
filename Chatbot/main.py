@@ -1,9 +1,12 @@
 """
 NexGenTeck AI Chatbot Backend
-FastAPI application with RAG-based intelligent responses.
+FastAPI application with fully softcoded RAG-based intelligent responses.
 
-This is a "softcoded" chatbot that dynamically understands user intent
-and generates contextual responses using website knowledge.
+FULLY SOFTCODED APPROACH:
+- NO hardcoded regex patterns or keyword matching
+- LLM interprets ALL user messages dynamically
+- Website content is the ONLY source of information
+- LLM decides intent, sentiment, and context needs
 """
 
 from fastapi import FastAPI, HTTPException
@@ -47,9 +50,9 @@ class HealthResponse(BaseModel):
 async def lifespan(app: FastAPI):
     """
     Application lifespan handler.
-    Initializes the knowledge base on startup.
+    Initializes the knowledge base on startup by scraping the ENTIRE website.
     """
-    logger.info("Starting NexGenTeck AI Chatbot")
+    logger.info("Starting NexGenTeck AI Chatbot (Fully Softcoded)")
     
     # Validate configuration
     try:
@@ -58,9 +61,9 @@ async def lifespan(app: FastAPI):
         logger.error(f"Configuration error: {e}")
         raise
     
-    # Initialize knowledge base if empty
+    # Initialize knowledge base if empty - scrape entire website
     if not vector_store.is_initialized():
-        logger.info("Knowledge base is empty, scraping website...")
+        logger.info("Knowledge base is empty, scraping ENTIRE website...")
         await initialize_knowledge_base()
     else:
         logger.info(f"Knowledge base already has {vector_store.count()} documents")
@@ -72,12 +75,13 @@ async def lifespan(app: FastAPI):
 
 async def initialize_knowledge_base():
     """
-    Scrape website and populate the vector store.
-    This runs automatically on first startup.
+    Scrape the ENTIRE website and populate the vector store.
+    This is the ONLY source of information for the chatbot.
     """
     try:
         scraper = WebsiteScraper()
-        documents = scraper.scrape(max_pages=30)
+        # Scrape up to 100 pages for comprehensive coverage
+        documents = scraper.scrape(max_pages=100)
         
         if documents:
             count = vector_store.add_documents(documents)
@@ -87,6 +91,8 @@ async def initialize_knowledge_base():
             
     except Exception as e:
         logger.error(f"Failed to initialize knowledge base: {e}")
+        # The fallback content will be used automatically
+
         # The fallback content will be used automatically
 
 
