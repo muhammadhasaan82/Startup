@@ -30,6 +30,7 @@ export const Header: React.FC = () => {
     { code: 'ar', name: 'العربية', flag: 'https://flagcdn.com/w20/sa.png' },
     { code: 'fa', name: 'فارسی', flag: 'https://flagcdn.com/w20/ir.png' },
     { code: 'de', name: 'Deutsch', flag: 'https://flagcdn.com/w20/de.png' },
+    { code: 'sv', name: 'Svenska', flag: 'https://flagcdn.com/w20/se.png' },
     { code: 'it', name: 'Italiano', flag: 'https://flagcdn.com/w20/it.png' },
     { code: 'es', name: 'Español', flag: 'https://flagcdn.com/w20/es.png' },
     { code: 'fr', name: 'Français', flag: 'https://flagcdn.com/w20/fr.png' },
