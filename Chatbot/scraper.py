@@ -37,7 +37,7 @@ class WebsiteScraper:
     def scrape(self, max_pages: int = 100) -> List[Dict[str, str]]:
         """
         Scrape the ENTIRE website and extract ALL content.
-        This builds the complete knowledge base for the chatbot.
+        This includes knowing the sitemap structure since it's a SPA.
         
         Args:
             max_pages: Maximum number of pages to scrape
@@ -46,77 +46,142 @@ class WebsiteScraper:
             List of documents with 'content' and 'metadata' keys
         """
         logger.info(f"Starting comprehensive scrape of {self.base_url}")
-        logger.info(f"Will scrape up to {max_pages} pages")
         
-        try:
-            self._crawl_page(self.base_url, max_pages)
-        except Exception as e:
-            logger.error(f"Error during scraping: {e}")
-            # Return fallback content if scraping fails
-            if not self.documents:
-                return self._get_fallback_content()
+        # known routes for the React app (since crawler can't always find links in JS)
+        known_routes = [
+            '/',
+            '/about',
+            '/services',
+            '/portfolio', 
+            '/pricing',
+            '/blog',
+            '/contact',
+            '/services/web-development',
+            '/services/mobile-app-development', 
+            '/services/ecommerce',
+            '/services/seo',
+            '/services/social-media-marketing',
+            '/services/blockchain-development',
+            '/services/google-ads',
+            '/services/software-development',
+            '/services/outdoor-media'
+        ]
         
+        # Add all known routes to the visit queue
+        for route in known_routes:
+            full_url = urljoin(self.base_url, route)
+            try:
+                self._crawl_page(full_url, max_pages)
+            except Exception as e:
+                logger.error(f"Failed to scrape {full_url}: {e}")
+                
         logger.info(f"Scraped {len(self.visited_urls)} pages, created {len(self.documents)} documents")
         return self.documents
     
     def _crawl_page(self, url: str, max_pages: int):
         """
-        Recursively crawl a page and all its links.
-        
-        Args:
-            url: URL to crawl
-            max_pages: Maximum pages remaining
+        Crawl a page. For local dev (SPA), we fallback to reading source files
+        because scraping localhost React often returns empty HTML.
         """
         if len(self.visited_urls) >= max_pages:
             return
-        
-        # Normalize URL
-        url = url.split('#')[0]  # Remove anchors
-        url = url.rstrip('/')
-        
-        if url in self.visited_urls:
-            return
-        
-        # Only crawl pages from the same domain
-        if urlparse(url).netloc != urlparse(self.base_url).netloc:
-            return
-        
-        # Skip non-HTML resources
-        skip_extensions = ['.pdf', '.jpg', '.jpeg', '.png', '.gif', '.svg', '.css', '.js', '.ico', '.woff', '.woff2']
-        if any(url.lower().endswith(ext) for ext in skip_extensions):
-            return
-        
-        self.visited_urls.add(url)
-        logger.info(f"Scraping page {len(self.visited_urls)}/{max_pages}: {url}")
-        
-        try:
-            response = requests.get(url, timeout=15, headers={
-                'User-Agent': 'NexGenTeck-Chatbot/1.0 (Knowledge Base Builder)'
-            })
-            response.raise_for_status()
             
-            # Only process HTML content
-            content_type = response.headers.get('content-type', '')
-            if 'text/html' not in content_type:
-                return
-                
+        self.visited_urls.add(url)
+        logger.info(f"Processing: {url}")
+        
+        # 1. Try to map the URL to a local source file
+        # This is much more reliable for a local React app than scraping
+        parsed = urlparse(url)
+        path = parsed.path.strip('/')
+        
+        # Map URL path to file path
+        # Example: services/ecommerce -> src/pages/services/EcommercePage.tsx
+        source_content = self._read_local_source_file(path)
+        
+        if source_content:
+            logger.info(f"Found local source file for {url}")
+            self._process_content(source_content, url, f"Page: {path or 'Home'}")
+            return
+
+        # 2. Fallback to HTTP scraping (for external links or if file not found)
+        try:
+            response = requests.get(url, timeout=10)
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.text, 'lxml')
+                self._extract_all_content(soup, url)
         except Exception as e:
             logger.warning(f"Failed to fetch {url}: {e}")
-            return
+
+    def _read_local_source_file(self, url_path: str) -> str:
+        """
+        Read the content of fem corresponding React component file.
+        Adjusts path mapping based on project structure.
+        """
+        import os
         
-        soup = BeautifulSoup(response.text, 'lxml')
+        # Base directory for pages
+        # Assuming script runs from Chatbot/, we go up -> src/pages
+        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src', 'pages'))
         
-        # Extract ALL content from this page
-        self._extract_all_content(soup, url)
+        if not url_path:
+            # Home page
+            target_files = [os.path.join(base_dir, 'Home.tsx')]
+        else:
+            # Convert URL path to PascalCase for filename match
+            # e.g. services/web-development -> Services/WebDevelopmentPage.tsx or similar
+            parts = url_path.split('/')
+            
+            # Simple heuristic mapping
+            if len(parts) == 1:
+                # Top level pages: about -> About.tsx
+                name = parts[0].capitalize()
+                target_files = [os.path.join(base_dir, f"{name}.tsx")]
+            elif parts[0] == 'services':
+                # Service pages: services/web-development -> services/WebDevelopmentPage.tsx
+                # Need to convert kebab-case to PascalCase
+                service_name = ''.join(word.capitalize() for word in parts[1].split('-'))
+                target_files = [
+                    os.path.join(base_dir, 'services', f"{service_name}Page.tsx"),
+                    os.path.join(base_dir, 'services', f"{service_name}.tsx")
+                ]
+            else:
+                target_files = []
+
+        for fpath in target_files:
+            if os.path.exists(fpath):
+                try:
+                    with open(fpath, 'r', encoding='utf-8') as f:
+                        return f.read()
+                except Exception as e:
+                    logger.error(f"Error reading file {fpath}: {e}")
         
-        # Small delay to be respectful
-        time.sleep(0.2)
+        return None
+
+    def _process_content(self, raw_text: str, url: str, title: str):
+        """Process raw text (source code or HTML text) into chunks."""
+        # Simple cleanup to remove import statements and noisy code syntax
+        # We want to keep the text content primarily
+        lines = []
+        for line in raw_text.split('\n'):
+            line = line.strip()
+            # Skip imports and pure code lines roughly
+            if line.startswith('import ') or line.startswith('export ') or line == '}' or line == '{':
+                continue
+            if len(line) > 5:
+                lines.append(line)
         
-        # Find and crawl ALL internal links
-        for link in soup.find_all('a', href=True):
-            href = link['href']
-            full_url = urljoin(url, href)
-            self._crawl_page(full_url, max_pages)
+        clean_content = '\n'.join(lines)
+        
+        chunks = chunk_text(clean_content, chunk_size=800, overlap=100)
+        for i, chunk in enumerate(chunks):
+            self.documents.append({
+                'content': chunk,
+                'metadata': {
+                    'source': url,
+                    'title': title,
+                    'chunk_index': i
+                }
+            })
     
     def _extract_all_content(self, soup: BeautifulSoup, url: str):
         """

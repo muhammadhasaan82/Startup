@@ -47,8 +47,12 @@ def chunk_text(text: str, chunk_size: int = 500, overlap: int = 50) -> List[str]
         chunk = text[start:end].strip()
         if chunk:
             chunks.append(chunk)
-        
-        start = end - overlap
+
+        # Ensure forward progress even if overlap or separators cause regression
+        next_start = end - overlap
+        if next_start <= start:
+            next_start = end
+        start = next_start
     
     return chunks
 
