@@ -288,7 +288,7 @@ export const Header: React.FC = () => {
                         className={`px-4 py-2 rounded-lg transition-colors flex items-center space-x-2 ${language === lang.code ? 'bg-orange-500 text-white' : `${mobileMenuBg} ${textColor} ${dropdownHover}`
                           }`}
                       >
-                        <span>{lang.flag}</span>
+                        <img src={lang.flag} alt={lang.name} className="w-5 h-4 object-cover rounded-sm" />
                         <span>{lang.name}</span>
                       </button>
                     ))}
