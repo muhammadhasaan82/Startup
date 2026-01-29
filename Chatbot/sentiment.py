@@ -164,23 +164,29 @@ class LLMAnalyzer:
 Analyze the user's message and determine:
 
 1. **is_greeting**: Is this a greeting or casual hello? (true/false)
-2. **intent**: What does the user want? One of: "greeting", "question", "request", "complaint", "feedback", "general"
-3. **needs_context**: Does this message need information from our knowledge base to answer properly? (true/false)
+2. **intent**: What does the user want? One of: "greeting", "question", "request", "complaint", "feedback", "contact", "hire", "quote", "general"
+3. **is_lead_intent**: Does this message indicate the user wants to contact us, hire us, get a quote, or work with us? (true/false)
+   - Examples: "I want to hire you", "contact me", "get a quote", "I need your services", "how can I work with you"
+4. **needs_context**: Does this message need information from our knowledge base to answer properly? (true/false)
    - Greetings and casual chat do NOT need context
    - Questions about services, pricing, company info DO need context
-4. **context_topics**: If needs_context is true, what topics should we search for? (list of keywords)
+5. **context_topics**: If needs_context is true, what topics should we search for? (list of keywords)
+6. **contact_data**: If the user provides name, email, phone, or project details, extract them (or null if none)
 
 IMPORTANT:
 - Be intelligent about understanding what the user wants
 - Do not use rigid rules - understand the intent naturally
+- Detect lead generation intent (contact, hire, quote requests)
 - The sentiment is already analyzed by a separate model, focus on INTENT
 
 Respond ONLY with valid JSON in this exact format:
 {
     "is_greeting": true/false,
-    "intent": "greeting|question|request|complaint|feedback|general",
+    "intent": "greeting|question|request|complaint|feedback|contact|hire|quote|general",
+    "is_lead_intent": true/false,
     "needs_context": true/false,
-    "context_topics": ["topic1", "topic2"]
+    "context_topics": ["topic1", "topic2"],
+    "contact_data": null or {"name": "...", "email": "...", "phone": "...", "project": "..."}
 }"""
             
             response = LLMAnalyzer._llm.invoke([
