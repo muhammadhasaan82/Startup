@@ -61,10 +61,9 @@ class WebsiteScraper:
             '/services/ecommerce',
             '/services/seo',
             '/services/social-media-marketing',
-            '/services/blockchain-development',
-            '/services/google-ads',
             '/services/software-development',
-            '/services/outdoor-media'
+            '/services/3d-graphics',
+            '/services/video-editing'
         ]
         
         # Add all known routes to the visit queue
