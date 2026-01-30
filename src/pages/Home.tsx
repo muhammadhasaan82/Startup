@@ -4,7 +4,6 @@ import { motion } from 'motion/react';
 import { ArrowRight, CheckCircle2, Quote, Star } from 'lucide-react';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { useLanguage } from '../contexts/LanguageContext';
-import { useTheme } from '../contexts/ThemeContext';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { TypewriterText } from '../components/TypewriterText';
 import {
@@ -18,13 +17,6 @@ import {
 
 export const Home: React.FC = () => {
   const { t } = useLanguage();
-  const { theme } = useTheme();
-
-  // Dark mode classes
-  const sectionBg = theme === 'dark' ? 'bg-[#0f0f0f]' : 'bg-white';
-  const textPrimary = theme === 'dark' ? 'text-white' : 'text-gray-900';
-  const textSecondary = theme === 'dark' ? 'text-gray-300' : 'text-gray-600';
-  const textMuted = theme === 'dark' ? 'text-gray-400' : 'text-gray-700';
   const [carouselApi, setCarouselApi] = React.useState<CarouselApi>();
   const [currentSlide, setCurrentSlide] = React.useState(0);
 
@@ -393,44 +385,56 @@ export const Home: React.FC = () => {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className={`py-20 ${sectionBg}`}>
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <AnimatedSection direction="left">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1760346546771-a81d986459ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB0ZWFtJTIwbWVldGluZ3xlbnwxfHx8fDE3NjQ0MTcxMDh8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Professional Team"
-                className="rounded-2xl shadow-2xl"
-              />
-            </AnimatedSection>
-            <AnimatedSection direction="right">
-              <h2 className={`text-4xl lg:text-5xl ${textPrimary} mb-6`}>{t('whyus.title')}</h2>
-              <p className={`text-xl ${textSecondary} mb-8`}>
-                {t('whyus.subtitle')}
-              </p>
-              <div className="space-y-4">
-                {[
-                  t('whyus.point1'),
-                  t('whyus.point2'),
-                  t('whyus.point3'),
-                  t('whyus.point4'),
-                  t('whyus.point5'),
-                  t('whyus.point6'),
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="flex items-start space-x-3"
-                  >
-                    <CheckCircle2 className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
-                    <span className={textMuted}>{item}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </AnimatedSection>
+      <section className="relative bg-[#000000] py-20 overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 z-0">
+          <div className="hero-network"></div>
+          <div className="hero-glow-lines"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Solid Black Card Container */}
+          <div
+            className="border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl relative z-20"
+            style={{ backgroundColor: '#000000' }}
+          >
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <AnimatedSection direction="left">
+                <ImageWithFallback
+                  src="https://images.unsplash.com/photo-1760346546771-a81d986459ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB0ZWFtJTIwbWVldGluZ3xlbnwxfHx8fDE3NjQ0MTcxMDh8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                  alt="Professional Team"
+                  className="rounded-2xl shadow-2xl"
+                />
+              </AnimatedSection>
+              <AnimatedSection direction="right">
+                <h2 className="text-4xl lg:text-5xl text-white mb-6">{t('whyus.title')}</h2>
+                <p className="text-xl text-white/80 mb-8">
+                  {t('whyus.subtitle')}
+                </p>
+                <div className="space-y-4">
+                  {[
+                    t('whyus.point1'),
+                    t('whyus.point2'),
+                    t('whyus.point3'),
+                    t('whyus.point4'),
+                    t('whyus.point5'),
+                    t('whyus.point6'),
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      className="flex items-start space-x-3"
+                    >
+                      <CheckCircle2 className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
+                      <span className="text-white">{item}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </AnimatedSection>
+            </div>
           </div>
         </div>
       </section>

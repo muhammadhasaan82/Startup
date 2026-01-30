@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
   };
 
   // Dark mode classes
-  const footerBg = theme === 'dark' ? 'bg-[#0a0a0a]' : 'bg-gray-900';
+  const footerBg = theme === 'dark' ? 'bg-gray-900 border-t border-gray-800' : 'bg-gray-900';
   const inputBg = theme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-gray-800';
 
   return (

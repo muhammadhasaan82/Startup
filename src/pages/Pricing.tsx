@@ -109,8 +109,8 @@ export const Pricing: React.FC = () => {
               <button
                 onClick={() => setBillingCycle('monthly')}
                 className={`px-6 py-3 rounded-lg transition-all ${billingCycle === 'monthly'
-                    ? 'bg-orange-500 text-white'
-                    : 'text-white hover:bg-white/10'
+                  ? 'bg-orange-500 text-white'
+                  : 'text-white hover:bg-white/10'
                   }`}
               >
                 {t('pricing.billing.monthly')}
@@ -118,8 +118,8 @@ export const Pricing: React.FC = () => {
               <button
                 onClick={() => setBillingCycle('yearly')}
                 className={`px-6 py-3 rounded-lg transition-all relative ${billingCycle === 'yearly'
-                    ? 'bg-orange-500 text-white'
-                    : 'text-white hover:bg-white/10'
+                  ? 'bg-orange-500 text-white'
+                  : 'text-white hover:bg-white/10'
                   }`}
               >
                 {t('pricing.billing.yearly')}
@@ -141,8 +141,8 @@ export const Pricing: React.FC = () => {
                 <motion.div
                   whileHover={{ y: -10 }}
                   className={`rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all h-full flex flex-col ${plan.popular
-                      ? 'bg-gradient-to-br from-orange-500 to-orange-600 text-white border-4 border-yellow-400 relative'
-                      : 'bg-white border border-gray-200'
+                    ? 'bg-gradient-to-br from-orange-500 to-orange-600 text-white border-4 border-yellow-400 relative'
+                    : 'bg-white border border-gray-200'
                     }`}
                 >
                   {plan.popular && (
@@ -176,7 +176,7 @@ export const Pricing: React.FC = () => {
                     <ul className="space-y-3">
                       {plan.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start space-x-3">
-                          <CheckCircle className={`w-5 h-5 flex-shrink-0 mt-0.5 ${plan.popular ? 'text-white' : 'text-green-500'
+                          <CheckCircle className={`w-5 h-5 flex-shrink-0 mt-0.5 ${plan.popular ? 'text-white' : 'text-orange-500'
                             }`} />
                           <span className={plan.popular ? 'text-white/90' : 'text-gray-600'}>
                             {feature}
@@ -198,8 +198,8 @@ export const Pricing: React.FC = () => {
                   <Link
                     to="/contact"
                     className={`block text-center px-8 py-4 rounded-lg transition-all ${plan.popular
-                        ? 'bg-white text-orange-500 hover:bg-gray-100'
-                        : 'bg-orange-500 text-white hover:bg-orange-600'
+                      ? 'bg-white text-orange-500 hover:bg-gray-100'
+                      : 'bg-orange-500 text-white hover:bg-orange-600'
                       }`}
                   >
                     {t('pricing.actions.getStarted')}
@@ -296,24 +296,24 @@ export const Pricing: React.FC = () => {
           <div className="max-w-3xl mx-auto space-y-6">
             {[
               {
-                  q: t('pricing.faq.items.1.q'),
-                  a: t('pricing.faq.items.1.a'),
+                q: t('pricing.faq.items.1.q'),
+                a: t('pricing.faq.items.1.a'),
               },
               {
-                  q: t('pricing.faq.items.2.q'),
-                  a: t('pricing.faq.items.2.a'),
+                q: t('pricing.faq.items.2.q'),
+                a: t('pricing.faq.items.2.a'),
               },
               {
-                  q: t('pricing.faq.items.3.q'),
-                  a: t('pricing.faq.items.3.a'),
+                q: t('pricing.faq.items.3.q'),
+                a: t('pricing.faq.items.3.a'),
               },
               {
-                  q: t('pricing.faq.items.4.q'),
-                  a: t('pricing.faq.items.4.a'),
+                q: t('pricing.faq.items.4.q'),
+                a: t('pricing.faq.items.4.a'),
               },
               {
-                  q: t('pricing.faq.items.5.q'),
-                  a: t('pricing.faq.items.5.a'),
+                q: t('pricing.faq.items.5.q'),
+                a: t('pricing.faq.items.5.a'),
               },
             ].map((item, index) => (
               <AnimatedSection key={index} delay={index * 0.05}>
