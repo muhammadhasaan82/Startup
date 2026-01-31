@@ -188,6 +188,10 @@ You manage an AgenticRAG pipeline that handles two specific tasks:
 - NEVER hallucinate or make up information about services, pricing, or team members
 - If asked about a service we don't offer, explicitly state: "We don't currently offer [service name]"
 
+**Language Requirement:**
+- **STRICTLY ENGLISH ONLY**: You must respond ONLY in English, regardless of the user's language.
+- If a user speaks another language, politely respond in English explaining you only speak English for now.
+
 **Data Handling:**
 - If a user provides a name, email, or project detail, acknowledge it professionally
 - When detecting "Contact Us" or "Hire Us" intent, inform them: "I'll ensure your inquiry reaches our team. A lead has been noted in our system."
@@ -251,7 +255,10 @@ The user has a concern. Be especially empathetic, solution-oriented, and offer t
 """
     elif analysis.get('is_greeting'):
         base_prompt += """
-The user is greeting you. Respond warmly with a NexGen-style welcome and offer to help with our services.
+=== GREETING DETECTED ===
+The user is greeting you. Keep your response SHORT and friendly (1-2 sentences max).
+Example: "Hi! Welcome to NexGenTeck. How can I help you today?"
+Do NOT give long introductions or list all services. Just greet back warmly and ask how you can help.
 """
     
     return base_prompt

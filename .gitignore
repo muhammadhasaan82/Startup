@@ -47,3 +47,10 @@ logs/
 # UV
 .uv/
 uv.lock
+
+# Node
+node_modules/
+dist/
+dist-ssr/
+*.local
+.DS_Store

@@ -37,7 +37,8 @@ class WebsiteScraper:
     def scrape(self, max_pages: int = 100) -> List[Dict[str, str]]:
         """
         Scrape the ENTIRE website and extract ALL content.
-        This includes knowing the sitemap structure since it's a SPA.
+        For local development, uses translation files directly.
+        For production, scrapes the live website.
         
         Args:
             max_pages: Maximum number of pages to scrape
@@ -46,6 +47,18 @@ class WebsiteScraper:
             List of documents with 'content' and 'metadata' keys
         """
         logger.info(f"Starting comprehensive scrape of {self.base_url}")
+        
+        # For local development, use translation extractor to get ACTUAL content
+        # This avoids the issue of reading t('key') instead of real text
+        if 'localhost' in self.base_url or '127.0.0.1' in self.base_url:
+            logger.info("Local development detected - using translation extractor")
+            try:
+                from translation_extractor import get_translation_based_content
+                self.documents = get_translation_based_content()
+                logger.info(f"Loaded {len(self.documents)} documents from translations")
+                return self.documents
+            except Exception as e:
+                logger.warning(f"Translation extractor failed: {e}, falling back to source scraping")
         
         # known routes for the React app (since crawler can't always find links in JS)
         known_routes = [
@@ -61,10 +74,9 @@ class WebsiteScraper:
             '/services/ecommerce',
             '/services/seo',
             '/services/social-media-marketing',
-            '/services/blockchain-development',
-            '/services/google-ads',
             '/services/software-development',
-            '/services/outdoor-media'
+            '/services/3d-graphics',
+            '/services/video-editing'
         ]
         
         # Add all known routes to the visit queue
@@ -313,15 +325,15 @@ URL: https://nexgenteck.com
 NexGenTeck is a leading technology company specializing in comprehensive digital solutions. 
 We help businesses transform and grow through innovative technology.
 
-Our core services include:
-• Web Development - Custom websites, web applications, responsive design
-• Mobile App Development - iOS and Android apps, cross-platform solutions
-• E-commerce Solutions - Online stores, payment integration, inventory management
-• SEO Services - Search engine optimization, content strategy, analytics
-• Social Media Marketing - Brand management, content creation, advertising
-• Blockchain Development - Smart contracts, DeFi solutions, NFT platforms
-• Google Ads Management - PPC campaigns, conversion optimization
-• Software Development - Custom software, enterprise solutions
+OUR COMPLETE SERVICES LIST (8 SERVICES):
+1. Web Development - Custom websites, web applications, responsive design
+2. Mobile App Development - iOS and Android apps, cross-platform solutions
+3. E-commerce Solutions - Online stores, payment integration, inventory management
+4. SEO Services - Search engine optimization, content strategy, analytics
+5. Social Media Marketing - Brand management, content creation, advertising
+6. Software Development - Custom software, enterprise solutions, SaaS platforms
+7. 3D Graphics Designing - 3D modeling, animation, product visualization, architectural renders
+8. Video Editing - Professional video editing, motion graphics, promotional videos
 
 We use modern technologies including React, Next.js, TypeScript, Node.js, Python, and more.
 
@@ -333,29 +345,56 @@ Contact us for a free consultation to discuss your project requirements.""",
 URL: https://nexgenteck.com/services
 
 WEB DEVELOPMENT
-We build modern, responsive websites using the latest technologies. Our web development services include:
+We build modern, responsive websites using the latest technologies:
 • Custom website design and development
 • React and Next.js applications
-• E-commerce platforms
-• Content management systems
-• Progressive web apps
-• Website maintenance and support
+• E-commerce platforms, Content management systems
+• Progressive web apps, Website maintenance and support
 
 MOBILE APP DEVELOPMENT
 Native and cross-platform mobile applications for iOS and Android:
-• React Native development
-• Flutter applications
+• React Native and Flutter development
 • Native iOS (Swift) and Android (Kotlin)
-• App store optimization
-• Mobile UI/UX design
+• App store optimization, Mobile UI/UX design
 
 E-COMMERCE SOLUTIONS
 Complete online store solutions:
-• Shopify development
-• WooCommerce integration
+• Shopify and WooCommerce development
 • Custom e-commerce platforms
-• Payment gateway integration
-• Inventory management systems""",
+• Payment gateway integration, Inventory management
+
+SEO SERVICES
+Search engine optimization to boost your online visibility:
+• On-page and off-page SEO
+• Keyword research and content optimization
+• Technical SEO audits, Analytics and reporting
+
+SOCIAL MEDIA MARKETING
+Grow your brand presence across social platforms:
+• Social media strategy and management
+• Content creation and scheduling
+• Paid advertising campaigns, Analytics
+
+SOFTWARE DEVELOPMENT
+Custom software solutions for your business:
+• Enterprise software development
+• SaaS platforms and applications
+• API development and integration
+• Cloud solutions and deployment
+
+3D GRAPHICS DESIGNING
+Professional 3D visualization and design:
+• 3D modeling and animation
+• Product visualization and renders
+• Architectural visualization
+• Character design and animation
+
+VIDEO EDITING
+Professional video production services:
+• Video editing and post-production
+• Motion graphics and animations
+• Promotional and marketing videos
+• Social media video content""",
                 'metadata': {'source': 'fallback', 'title': 'Services Overview'}
             },
             {
