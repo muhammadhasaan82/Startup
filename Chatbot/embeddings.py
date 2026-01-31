@@ -3,6 +3,10 @@ Embedding manager for the NexGenTeck AI Chatbot.
 Uses BGE-M3 for multilingual embeddings.
 """
 
+import os
+# Disable tokenizers parallelism to avoid multiprocessing issues on Windows
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
 from sentence_transformers import SentenceTransformer
 from typing import List
 import logging

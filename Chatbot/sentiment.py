@@ -57,10 +57,28 @@ class LLMAnalyzer:
         if LLMAnalyzer._sentiment_model is None:
             logger.info("Initializing RoBERTa sentiment model")
             try:
+                # Use explicit device=-1 for CPU and disable multiprocessing on Windows
+                import os
+                os.environ["TOKENIZERS_PARALLELISM"] = "false"
+                
+                # Explicitly load model with low_cpu_mem_usage=False to avoid multiprocessing issues on Windows
+                from transformers import AutoModelForSequenceClassification, AutoTokenizer
+                
+                model_name = "cardiffnlp/twitter-roberta-base-sentiment-latest"
+                
+                # Load tokenizer and model explicitly
+                tokenizer = AutoTokenizer.from_pretrained(model_name)
+                model = AutoModelForSequenceClassification.from_pretrained(
+                    model_name,
+                    low_cpu_mem_usage=False  # Disable multiprocessing-based loading
+                )
+                
                 LLMAnalyzer._sentiment_model = pipeline(
                     "sentiment-analysis",
-                    model="cardiffnlp/twitter-roberta-base-sentiment-latest",
-                    top_k=None
+                    model=model,
+                    tokenizer=tokenizer,
+                    top_k=None,
+                    device=-1,  # Force CPU
                 )
                 logger.info("RoBERTa sentiment model initialized successfully")
             except Exception as e:

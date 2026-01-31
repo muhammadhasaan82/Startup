@@ -251,7 +251,10 @@ The user has a concern. Be especially empathetic, solution-oriented, and offer t
 """
     elif analysis.get('is_greeting'):
         base_prompt += """
-The user is greeting you. Respond warmly with a NexGen-style welcome and offer to help with our services.
+=== GREETING DETECTED ===
+The user is greeting you. Keep your response SHORT and friendly (1-2 sentences max).
+Example: "Hi! Welcome to NexGenTeck. How can I help you today?"
+Do NOT give long introductions or list all services. Just greet back warmly and ask how you can help.
 """
     
     return base_prompt

@@ -1,3 +1,14 @@
+# Windows multiprocessing compatibility - MUST be at the very start
+import multiprocessing
+import os
+
+# Set environment variables BEFORE any other imports
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+# Enable freeze_support for Windows
+if __name__ == "__main__":
+    multiprocessing.freeze_support()
+
 """
 NexGenTeck AI Chatbot Backend
 FastAPI application with fully softcoded RAG-based intelligent responses.

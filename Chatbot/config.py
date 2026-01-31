@@ -31,7 +31,7 @@ class Config:
     LLM_MODEL: str = os.getenv("LLM_MODEL", "llama-3.3-70b-versatile")
     
     # RAG Configuration
-    MAX_CONTEXT_DOCS: int = int(os.getenv("MAX_CONTEXT_DOCS", "5"))
+    MAX_CONTEXT_DOCS: int = int(os.getenv("MAX_CONTEXT_DOCS", "10"))
     RELEVANCE_THRESHOLD: float = float(os.getenv("RELEVANCE_THRESHOLD", "1.5"))
     
     # LLM Parameters
