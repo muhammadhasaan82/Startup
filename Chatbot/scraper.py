@@ -68,6 +68,20 @@ class WebsiteScraper:
             self._crawl_site(max_pages=max_pages)
         except Exception as e:
             logger.error(f"Rendered scraping failed: {e}")
+
+        # If scraping produced nothing, provide a fallback so the bot still works.
+        if not self.documents:
+            logger.warning("No documents extracted from scraping; falling back to translation/fallback content")
+            try:
+                from translation_extractor import get_translation_based_content
+
+                self.documents = get_translation_based_content()
+                logger.info(f"Loaded {len(self.documents)} documents from translations fallback")
+            except Exception as e:
+                logger.warning(f"Translation fallback failed: {e}")
+
+            if not self.documents:
+                self.documents = self._get_fallback_content()
                 
         logger.info(f"Scraped {len(self.visited_urls)} pages, created {len(self.documents)} documents")
         return self.documents
@@ -118,7 +132,11 @@ class WebsiteScraper:
                     if not href or href.startswith('mailto:') or href.startswith('tel:'):
                         continue
 
-                    next_url = urljoin(self.base_url, href)
+                    # Preserve GitHub Pages subpaths like "/NGT/" when joining.
+                    if href.startswith('http://') or href.startswith('https://'):
+                        next_url = href
+                    else:
+                        next_url = urljoin(self.base_url.rstrip('/') + '/', href.lstrip('/'))
                     parsed = urlparse(next_url)
                     if parsed.netloc != base_domain:
                         continue

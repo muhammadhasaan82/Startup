@@ -87,6 +87,15 @@ curl -fsS http://127.0.0.1:8000/health
 curl -X POST http://127.0.0.1:8000/reindex
 ```
 
+### CLI testing on a server (host vs docker)
+
+If `QDRANT_URL` is set to `http://qdrant:6333`, that hostname only works **inside** a `docker compose` network.
+
+- Run the CLI inside the running container (recommended):
+  - `docker compose exec chatbot python cli_chat.py`
+- Or run the CLI on the host and point Qdrant to localhost:
+  - Expose Qdrant on `127.0.0.1:6333` and use `QDRANT_URL=http://localhost:6333`.
+
 ### 4. Test the API
 
 ```bash
