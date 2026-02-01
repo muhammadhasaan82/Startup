@@ -81,11 +81,28 @@ class WebsiteScraper:
         
         # Add all known routes to the visit queue
         for route in known_routes:
-            full_url = urljoin(self.base_url, route)
+            # Preserve GitHub Pages subpaths like "/NGT/" when joining routes.
+            # urljoin(base, "/about") would otherwise drop the base path.
+            full_url = urljoin(self.base_url.rstrip('/') + '/', route.lstrip('/'))
             try:
                 self._crawl_page(full_url, max_pages)
             except Exception as e:
                 logger.error(f"Failed to scrape {full_url}: {e}")
+
+        # If HTML scraping produced nothing (common for SPAs), provide a fallback.
+        # Note: translation-based content requires the frontend source files to be present.
+        if not self.documents:
+            logger.warning("No documents extracted from scraping; falling back to translation/fallback content")
+            try:
+                from translation_extractor import get_translation_based_content
+
+                self.documents = get_translation_based_content()
+                logger.info(f"Loaded {len(self.documents)} documents from translations fallback")
+            except Exception as e:
+                logger.warning(f"Translation fallback failed: {e}")
+
+            if not self.documents:
+                self.documents = self._get_fallback_content()
                 
         logger.info(f"Scraped {len(self.visited_urls)} pages, created {len(self.documents)} documents")
         return self.documents

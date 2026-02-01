@@ -23,7 +23,7 @@ class Config:
     # Override via environment variable for specific deployments
     CORS_ORIGINS: list = os.getenv(
         "CORS_ORIGINS", 
-        "https://nexgenteck.github.io/NGT/"
+        "https://nexgenteck.github.io,http://localhost:5173,http://localhost:3000"
     ).split(",")
     
     # Model Configuration
