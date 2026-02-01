@@ -9,10 +9,10 @@ services:
 
   chatbot:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: Chatbot/Dockerfile
     restart: unless-stopped
-    env_file: .env
+    env_file: Chatbot/.env
     environment:
       - QDRANT_URL=http://qdrant:6333
       - TOKENIZERS_PARALLELISM=false
