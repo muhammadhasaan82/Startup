@@ -4,12 +4,28 @@ import os
 import sys
 import logging
 
+from dotenv import load_dotenv
 # Set environment variables BEFORE imports
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 # Force single thread for numpy/pytorch to reduce overhead/errors on Windows CLI
 os.environ["OMP_NUM_THREADS"] = "1"
 os.environ["MKL_NUM_THREADS"] = "1"
 
+# Load .env early so CLI-side environment adjustments can see variables.
+load_dotenv()
+
+# If the user runs the CLI on the host (not inside docker-compose), the hostname
+# "qdrant" will not resolve. Expose Qdrant on localhost and use
+# QDRANT_URL=http://localhost:6333.
+try:
+    running_in_docker = os.path.exists("/.dockerenv")
+except Exception:
+    running_in_docker = False
+
+if not running_in_docker:
+    qdrant_url = os.getenv("QDRANT_URL", "")
+    if qdrant_url.startswith("http://qdrant") or qdrant_url.startswith("https://qdrant"):
+        os.environ["QDRANT_URL"] = "http://localhost:6333"
 if __name__ == "__main__":
     multiprocessing.freeze_support()
 
@@ -36,7 +52,8 @@ async def init_chatbot():
     
     # 2. Scrape and index content
     print("📥 Indexing content (checking local translations)...")
-    scraper = WebsiteScraper(base_url="http://localhost:3000") 
+<<<<<<< HEAD
+    scraper = WebsiteScraper(base_url=os.getenv("CLI_WEBSITE_URL") or config.WEBSITE_URL)
     
     # This will use the translation_extractor.py logic I just added
     documents = scraper.scrape(max_pages=100)

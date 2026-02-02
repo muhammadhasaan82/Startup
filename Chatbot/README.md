@@ -68,6 +68,34 @@ pip install -r requirements.txt
 uvicorn main:app --reload --port 8000
 ```
 
+### Production (Docker Compose, DigitalOcean-friendly)
+
+1) Copy `.env.example` to `.env` and set real values:
+  - `GROQ_API_KEY` (required)
+  - `WEBSITE_URL` to your live site (do **not** leave localhost in prod)
+  - `QDRANT_URL=http://qdrant:6333` (matches the compose service)
+2) Build and run with Qdrant:
+```bash
+docker compose up -d --build
+```
+3) Check health and document count:
+```bash
+curl -fsS http://127.0.0.1:8000/health
+```
+4) To force re-ingestion after website changes:
+```bash
+curl -X POST http://127.0.0.1:8000/reindex
+```
+
+### CLI testing on a server (host vs docker)
+
+If `QDRANT_URL` is set to `http://qdrant:6333`, that hostname only works **inside** a `docker compose` network.
+
+- Run the CLI inside the running container (recommended):
+  - `docker compose exec chatbot python cli_chat.py`
+- Or run the CLI on the host and point Qdrant to localhost:
+  - Expose Qdrant on `127.0.0.1:6333` and use `QDRANT_URL=http://localhost:6333`.
+
 ### 4. Test the API
 
 ```bash
