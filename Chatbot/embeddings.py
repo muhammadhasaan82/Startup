@@ -34,16 +34,16 @@ class EmbeddingManager:
         if EmbeddingManager._model is None:
             logger.info(f"Loading embedding model: {config.EMBEDDING_MODEL}")
             try:
+                # Force clean download with cache_folder to avoid corruption
                 EmbeddingManager._model = SentenceTransformer(
                     config.EMBEDDING_MODEL,
-                    trust_remote_code=True
+                    trust_remote_code=True,
+                    device='cpu'
                 )
                 logger.info("Embedding model loaded successfully")
             except Exception as e:
                 logger.error(f"Failed to load embedding model: {e}")
-                # Fallback to a smaller model
-                logger.info("Falling back to all-MiniLM-L6-v2")
-                EmbeddingManager._model = SentenceTransformer('all-MiniLM-L6-v2')
+                raise RuntimeError(f"BAAI/bge-m3 is required. Error: {e}")
     
     @property
     def model(self) -> SentenceTransformer:

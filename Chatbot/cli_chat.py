@@ -52,7 +52,6 @@ async def init_chatbot():
     
     # 2. Scrape and index content
     print("📥 Indexing content (checking local translations)...")
-<<<<<<< HEAD
     scraper = WebsiteScraper(base_url=os.getenv("CLI_WEBSITE_URL") or config.WEBSITE_URL)
     
     # This will use the translation_extractor.py logic I just added
