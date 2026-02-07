@@ -1,4 +1,15 @@
 name = "ngt-chatbot-proxy"
 main = "cloudflare/chatbot-proxy-worker.js"
 compatibility_date = "2026-02-06"
+
+# Enable the *.workers.dev subdomain so the Worker is reachable
+# without a custom domain.  Change to false once you add a custom route.
 workers_dev = true
+
+# Backend environment variables
+# These are readable at runtime as env.BACKEND_ORIGIN / env.BACKEND_HOST.
+# If you later add a DNS A record (e.g. api.nexgenteck.com → 165.245.177.103)
+# update these values to use the hostname instead.
+[vars]
+BACKEND_ORIGIN = "http://165.245.177.103:8000"
+BACKEND_HOST   = "165.245.177.103"
