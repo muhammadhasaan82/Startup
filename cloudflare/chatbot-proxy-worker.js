@@ -7,14 +7,16 @@
  *   2. Stripping Cloudflare-internal headers that confuse origin servers
  *
  * Environment variables (set in wrangler.toml [vars] or dashboard):
- *   BACKEND_URL   – full origin of the backend, e.g. http://165.245.177.103:8000
- *   BACKEND_HOST  – hostname / IP the backend expects in the Host header
+ *   BACKEND_IP    – backend IP address, e.g. 165.245.177.103
+ *   BACKEND_HOST  – hostname the backend expects in the Host header
+ *   BACKEND_PORT  – backend port, e.g. 8000
  */
 export default {
   async fetch(request, env) {
     // ── Configuration ────────────────────────────────────────────────
-    const BACKEND_URL  = env.BACKEND_URL || 'http://165.245.177.103:8000';
+    const BACKEND_IP = env.BACKEND_IP || '165.245.177.103';
     const BACKEND_HOST = env.BACKEND_HOST || 'api.nexgenteck.com';
+    const BACKEND_PORT = env.BACKEND_PORT || '8000';
 
     const ALLOWED_ORIGINS = [
       'https://nexgenteck.github.io',
@@ -25,7 +27,7 @@ export default {
 
     // ── CORS helpers ─────────────────────────────────────────────────
     const origin = request.headers.get('Origin') || '';
-    const defaultOrigin = 'https://muhammadhasaan82.github.io';
+    const defaultOrigin = 'https://nexgenteck.github.io';
     const corsOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : defaultOrigin;
 
     const corsHeaders = {
@@ -42,7 +44,7 @@ export default {
 
     // ── Build target URL ─────────────────────────────────────────────
     const incoming  = new URL(request.url);
-    const targetUrl = `${BACKEND_URL}${incoming.pathname}${incoming.search}`;
+    const targetUrl = `http://${BACKEND_IP}:${BACKEND_PORT}${incoming.pathname}${incoming.search}`;
 
     // ── Forward headers with explicit Host ───────────────────────────
     //    KEY FIX: *set* the Host header to the backend's address instead
