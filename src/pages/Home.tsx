@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, CheckCircle2, Quote, Star } from 'lucide-react';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useTheme } from '../contexts/ThemeContext';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { TypewriterText } from '../components/TypewriterText';
 import {
@@ -17,6 +18,15 @@ import {
 
 export const Home: React.FC = () => {
   const { t } = useLanguage();
+  const { theme } = useTheme();
+
+  // Dark mode classes
+  const sectionBg = theme === 'dark' ? 'bg-[#0f0f0f]' : 'bg-white';
+  const sectionBgAlt = theme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-gray-50';
+  const textPrimary = theme === 'dark' ? 'text-white' : 'text-gray-900';
+  const textSecondary = theme === 'dark' ? 'text-gray-300' : 'text-gray-600';
+  const textMuted = theme === 'dark' ? 'text-gray-400' : 'text-gray-700';
+  const cardBg = theme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-white';
   const [carouselApi, setCarouselApi] = React.useState<CarouselApi>();
   const [currentSlide, setCurrentSlide] = React.useState(0);
 
@@ -115,9 +125,9 @@ export const Home: React.FC = () => {
   ];
 
   const stats = [
-    { number: '750+', labelKey: 'stats.projects' },
-    { number: '450+', labelKey: 'stats.clients' },
-    { number: '85+', labelKey: 'stats.team' },
+    { number: '500+', labelKey: 'stats.projects' },
+    { number: '300+', labelKey: 'stats.clients' },
+    { number: '50+', labelKey: 'stats.team' },
     { number: '15+', labelKey: 'stats.experience' },
   ];
 
@@ -286,299 +296,237 @@ export const Home: React.FC = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="relative bg-black py-24 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 z-0">
-          <div className="hero-network"></div>
-          <div className="hero-glow-lines"></div>
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+      <AnimatedSection className={`${sectionBg} py-16`}>
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="relative group"
+                transition={{ delay: index * 0.1 }}
+                className="text-center"
               >
-                {/* Glow Effect */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl blur-md opacity-30 group-hover:opacity-60 transition-opacity duration-300"></div>
-
-                {/* Blurry Card */}
-                <div className="relative h-full text-center p-8 bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl">
-                  <div className="text-4xl lg:text-5xl font-bold text-orange-500 mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-white/80 font-medium uppercase text-sm tracking-wide">
-                    {t(stat.labelKey)}
-                  </div>
+                <div className="text-4xl lg:text-5xl bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent mb-2">
+                  {stat.number}
                 </div>
+                <div className={textSecondary}>{t(stat.labelKey)}</div>
               </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Services Section */}
-      <section className="relative bg-black py-20 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 z-0">
-          <div className="hero-network"></div>
-          <div className="hero-glow-lines"></div>
-        </div>
+      <section className={`py-20 ${sectionBgAlt}`}>
+        <div className="container mx-auto px-4">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className={`text-4xl lg:text-5xl ${textPrimary} mb-4`}>{t('services.title')}</h2>
+            <p className={`text-xl ${textSecondary} max-w-2xl mx-auto`}>
+              {t('services.subtitle')}
+            </p>
+          </AnimatedSection>
 
-        <div className="container mx-auto px-4 relative z-10">
-          {/* Black Card Container */}
-          <div className="bg-black/60 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12">
-            <AnimatedSection className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl text-white mb-4">{t('services.title')}</h2>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                {t('services.subtitle')}
-              </p>
-            </AnimatedSection>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => (
-                <AnimatedSection key={index} delay={index * 0.1}>
-                  <Link to={service.link}>
-                    <motion.div
-                      whileHover={{ y: -10 }}
-                      className="bg-[#1a1a1a] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group border border-white/5"
-                    >
-                      <div className="relative h-48 overflow-hidden">
-                        <ImageWithFallback
-                          src={service.image}
-                          alt={t(service.titleKey)}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                        <div className="absolute bottom-4 left-4 text-4xl">{service.icon}</div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <AnimatedSection key={index} delay={index * 0.1}>
+                <Link to={service.link}>
+                  <motion.div
+                    whileHover={{ y: -10 }}
+                    className={`${cardBg} rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group`}
+                  >
+                    <div className="relative h-48 overflow-hidden">
+                      <ImageWithFallback
+                        src={service.image}
+                        alt={t(service.titleKey)}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      <div className="absolute bottom-4 left-4 text-4xl">{service.icon}</div>
+                    </div>
+                    <div className="p-6">
+                      <h3 className={`text-xl ${textPrimary} mb-3`}>{t(service.titleKey)}</h3>
+                      <p className={`${textSecondary} mb-4`}>{t(service.descKey)}</p>
+                      <div className="flex items-center text-orange-500 group-hover:text-orange-600 transition-colors">
+                        <span className="mr-2">{t('common.learnMore')}</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                       </div>
-                      <div className="p-6">
-                        <h3 className="text-xl text-white mb-3">{t(service.titleKey)}</h3>
-                        <p className="text-gray-400 mb-4">{t(service.descKey)}</p>
-                        <div className="flex items-center text-orange-500 group-hover:text-orange-600 transition-colors">
-                          <span className="mr-2">{t('common.learnMore')}</span>
-                          <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
-                        </div>
-                      </div>
-                    </motion.div>
-                  </Link>
-                </AnimatedSection>
-              ))}
-            </div>
+                    </div>
+                  </motion.div>
+                </Link>
+              </AnimatedSection>
+            ))}
+          </div>
 
-            <div className="text-center mt-12">
-              <Link
-                to="/services"
-                className="inline-flex items-center space-x-2 bg-orange-500 text-white px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors"
-              >
-                <span>{t('services.viewAll')}</span>
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
+          <div className="text-center mt-12">
+            <Link
+              to="/services"
+              className="inline-flex items-center space-x-2 bg-orange-500 text-white px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors"
+            >
+              <span>{t('services.viewAll')}</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="relative bg-[#000000] py-20 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 z-0">
-          <div className="hero-network"></div>
-          <div className="hero-glow-lines"></div>
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          {/* Solid Black Card Container */}
-          <div
-            className="border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl relative z-20"
-            style={{ backgroundColor: '#000000' }}
-          >
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <AnimatedSection direction="left">
-                <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1760346546771-a81d986459ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB0ZWFtJTIwbWVldGluZ3xlbnwxfHx8fDE3NjQ0MTcxMDh8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                  alt="Professional Team"
-                  className="rounded-2xl shadow-2xl"
-                />
-              </AnimatedSection>
-              <AnimatedSection direction="right">
-                <h2 className="text-4xl lg:text-5xl text-white mb-6">{t('whyus.title')}</h2>
-                <p className="text-xl text-white/80 mb-8">
-                  {t('whyus.subtitle')}
-                </p>
-                <div className="space-y-4">
-                  {[
-                    t('whyus.point1'),
-                    t('whyus.point2'),
-                    t('whyus.point3'),
-                    t('whyus.point4'),
-                    t('whyus.point5'),
-                    t('whyus.point6'),
-                  ].map((item, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      className="flex items-start space-x-3"
-                    >
-                      <CheckCircle2 className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
-                      <span className="text-white">{item}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </AnimatedSection>
-            </div>
+      <section className={`py-20 ${sectionBg}`}>
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <AnimatedSection direction="left">
+              <ImageWithFallback
+                src="https://images.unsplash.com/photo-1760346546771-a81d986459ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB0ZWFtJTIwbWVldGluZ3xlbnwxfHx8fDE3NjQ0MTcxMDh8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                alt="Professional Team"
+                className="rounded-2xl shadow-2xl"
+              />
+            </AnimatedSection>
+            <AnimatedSection direction="right">
+              <h2 className={`text-4xl lg:text-5xl ${textPrimary} mb-6`}>{t('whyus.title')}</h2>
+              <p className={`text-xl ${textSecondary} mb-8`}>
+                {t('whyus.subtitle')}
+              </p>
+              <div className="space-y-4">
+                {[
+                  t('whyus.point1'),
+                  t('whyus.point2'),
+                  t('whyus.point3'),
+                  t('whyus.point4'),
+                  t('whyus.point5'),
+                  t('whyus.point6'),
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex items-start space-x-3"
+                  >
+                    <CheckCircle2 className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
+                    <span className={textMuted}>{item}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
       {/* Portfolio Preview Section */}
-      <section className="relative bg-black py-20 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 z-0">
-          <div className="hero-network"></div>
-          <div className="hero-glow-lines"></div>
-        </div>
+      <section className={`py-20 ${sectionBgAlt}`}>
+        <div className="container mx-auto px-4">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className={`text-4xl lg:text-5xl ${textPrimary} mb-4`}>{t('portfolio.title')}</h2>
+            <p className={`text-xl ${textSecondary} max-w-2xl mx-auto`}>
+              {t('portfolio.subtitle')}
+            </p>
+          </AnimatedSection>
 
-        <div className="container mx-auto px-4 relative z-10">
-          {/* Black Card Container */}
-          <div className="bg-black/60 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12">
-            <AnimatedSection className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl text-white mb-4">{t('portfolio.title')}</h2>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                {t('portfolio.subtitle')}
-              </p>
-            </AnimatedSection>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {portfolioPreview.map((project, index) => (
-                <AnimatedSection key={index} delay={index * 0.1}>
-                  <Link to={project.link}>
-                    <motion.div
-                      whileHover={{ y: -10 }}
-                      className="bg-[#1a1a1a] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group border border-white/5"
-                    >
-                      <div className="relative h-64 overflow-hidden">
-                        <ImageWithFallback
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                        <div className="absolute bottom-4 left-4 right-4">
-                          <div className="text-sm text-orange-400 mb-2">{t(project.category)}</div>
-                          <h3 className="text-xl text-white">{project.title}</h3>
-                        </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {portfolioPreview.map((project, index) => (
+              <AnimatedSection key={index} delay={index * 0.1}>
+                <Link to={project.link}>
+                  <motion.div
+                    whileHover={{ y: -10 }}
+                    className={`${cardBg} rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group`}
+                  >
+                    <div className="relative h-64 overflow-hidden">
+                      <ImageWithFallback
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <div className="text-sm text-blue-400 mb-2">{t(project.category)}</div>
+                        <h3 className="text-xl text-white">{project.title}</h3>
                       </div>
-                    </motion.div>
-                  </Link>
-                </AnimatedSection>
-              ))}
-            </div>
+                    </div>
+                  </motion.div>
+                </Link>
+              </AnimatedSection>
+            ))}
+          </div>
 
-            <div className="text-center mt-12">
-              <Link
-                to="/portfolio"
-                className="inline-flex items-center space-x-2 bg-orange-500 text-white px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors"
-              >
-                <span>{t('portfolio.viewAll')}</span>
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
+          <div className="text-center mt-12">
+            <Link
+              to="/portfolio"
+              className="inline-flex items-center space-x-2 bg-orange-500 text-white px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors"
+            >
+              <span>{t('portfolio.viewAll')}</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="relative bg-black py-20 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 z-0">
-          <div className="hero-network"></div>
-          <div className="hero-glow-lines"></div>
-        </div>
+      <section className="py-20 bg-gradient-to-br from-orange-500 to-orange-600 text-white">
+        <div className="container mx-auto px-4">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl mb-4">{t('testimonials.title')}</h2>
+            <p className="text-xl text-white/90 max-w-2xl mx-auto">
+              {t('testimonials.subtitle')}
+            </p>
+          </AnimatedSection>
 
-        <div className="container mx-auto px-4 relative z-10">
-          {/* Black Card Container */}
-          <div className="bg-black/60 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12">
-            <AnimatedSection className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl text-white mb-4">{t('testimonials.title')}</h2>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                {t('testimonials.subtitle')}
-              </p>
-            </AnimatedSection>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <AnimatedSection key={index} delay={index * 0.1}>
-                  <motion.div
-                    whileHover={{ y: -10 }}
-                    className="bg-[#1a1a1a] backdrop-blur-lg rounded-2xl p-8 border border-white/10 h-full"
-                  >
-                    <Quote className="w-12 h-12 text-orange-500/40 mb-4" />
-                    <p className="text-gray-300 mb-6">{testimonial.quote}</p>
-                    <div className="flex items-center space-x-4">
-                      <ImageWithFallback
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-12 h-12 rounded-full object-cover"
-                      />
-                      <div>
-                        <div className="text-white">{testimonial.name}</div>
-                        <div className="text-gray-500 text-sm">{testimonial.role}</div>
-                      </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <AnimatedSection key={index} delay={index * 0.1}>
+                <motion.div
+                  whileHover={{ y: -10 }}
+                  className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20"
+                >
+                  <Quote className="w-12 h-12 text-white/40 mb-4" />
+                  <p className="text-white/90 mb-6">{testimonial.quote}</p>
+                  <div className="flex items-center space-x-4">
+                    <ImageWithFallback
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-12 h-12 rounded-full object-cover"
+                    />
+                    <div>
+                      <div className="text-white">{testimonial.name}</div>
+                      <div className="text-white/70 text-sm">{testimonial.role}</div>
                     </div>
-                    <div className="flex space-x-1 mt-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                      ))}
-                    </div>
-                  </motion.div>
-                </AnimatedSection>
-              ))}
-            </div>
+                  </div>
+                  <div className="flex space-x-1 mt-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                </motion.div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="relative bg-black py-20 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 z-0">
-          <div className="hero-network"></div>
-          <div className="hero-glow-lines"></div>
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
+      <section className={`py-20 ${sectionBg}`}>
+        <div className="container mx-auto px-4">
           <AnimatedSection>
-            {/* Black Card Container with Orange Gradient Inside */}
-            <div className="bg-black/60 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12">
-              <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-12 text-center text-white">
-                <h2 className="text-4xl lg:text-5xl mb-6">{t('cta.title')}</h2>
-                <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
-                  {t('cta.subtitle')}
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link
-                    to="/contact"
-                    className="bg-white text-orange-500 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 inline-flex items-center justify-center space-x-2"
-                  >
-                    <span>{t('cta.button')}</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </Link>
-                  <Link
-                    to="/pricing"
-                    className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-orange-500 transition-all inline-flex items-center justify-center"
-                  >
-                    {t('nav.pricing')}
-                  </Link>
-                </div>
+            <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-12 text-center text-white">
+              <h2 className="text-4xl lg:text-5xl mb-6">{t('cta.title')}</h2>
+              <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
+                {t('cta.subtitle')}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  to="/contact"
+                  className="bg-white text-orange-500 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 inline-flex items-center justify-center space-x-2"
+                >
+                  <span>{t('cta.button')}</span>
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link
+                  to="/pricing"
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-orange-500 transition-all inline-flex items-center justify-center"
+                >
+                  {t('nav.pricing')}
+                </Link>
               </div>
             </div>
           </AnimatedSection>

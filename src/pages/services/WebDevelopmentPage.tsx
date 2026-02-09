@@ -40,18 +40,18 @@ export const WebDevelopmentPage: React.FC = () => {
     packages: [
       {
         name: t('services.web.package1.name'),
-        price: 'USD 29 – 179',
+        price: '$1,499',
         features: t('services.web.package1.features').split(','),
       },
       {
         name: t('services.web.package2.name'),
-        price: 'USD 107 – 286',
+        price: '$2,999',
         popular: true,
         features: t('services.web.package2.features').split(','),
       },
       {
         name: t('services.web.package3.name'),
-        price: 'USD 357 – 2,145+',
+        price: '$5,999',
         features: t('services.web.package3.features').split(','),
       },
     ],

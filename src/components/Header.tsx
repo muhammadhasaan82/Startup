@@ -46,12 +46,13 @@ export const Header: React.FC = () => {
   const services = [
     { name: 'services.ecommerce', path: '/services/ecommerce' },
     { name: 'services.web', path: '/services/web-development' },
+    { name: 'services.ppc', path: '/services/google-ads' },
     { name: 'services.seo', path: '/services/seo' },
     { name: 'services.social', path: '/services/social-media' },
     { name: 'services.mobile', path: '/services/mobile-app' },
     { name: 'services.software', path: '/services/software' },
-    { name: 'services.3dgraphics', path: '/services/3d-graphics' },
-    { name: 'services.videoediting', path: '/services/video-editing' },
+    { name: 'services.outdoor', path: '/services/outdoor-media' },
+    { name: 'services.blockchain', path: '/services/blockchain' },
   ];
 
   // Dynamic classes for dark mode support

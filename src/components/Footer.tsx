@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
   };
 
   // Dark mode classes
-  const footerBg = theme === 'dark' ? 'bg-gray-900 border-t border-gray-800' : 'bg-gray-900';
+  const footerBg = theme === 'dark' ? 'bg-[#0a0a0a]' : 'bg-gray-900';
   const inputBg = theme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-gray-800';
 
   return (
@@ -97,8 +97,7 @@ export const Footer: React.FC = () => {
               <li><Link to="/services/ecommerce" className="hover:text-orange-500 transition-colors">{t('services.ecommerce')}</Link></li>
               <li><Link to="/services/seo" className="hover:text-orange-500 transition-colors">{t('services.seo')}</Link></li>
               <li><Link to="/services/social-media" className="hover:text-orange-500 transition-colors">{t('services.social')}</Link></li>
-              <li><Link to="/services/3d-graphics" className="hover:text-orange-500 transition-colors">{t('services.3dgraphics')}</Link></li>
-              <li><Link to="/services/video-editing" className="hover:text-orange-500 transition-colors">{t('services.videoediting')}</Link></li>
+              <li><Link to="/services/blockchain" className="hover:text-orange-500 transition-colors">{t('services.blockchain')}</Link></li>
             </ul>
           </motion.div>
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Send, Clock, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -14,46 +14,29 @@ export const Contact: React.FC = () => {
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus('idle');
 
-    try {
-      const apiUrl = import.meta.env.VITE_CONTACT_API_URL || 'http://localhost:3001';
-      const response = await fetch(`${apiUrl}/api/contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
-      const data = await response.json();
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-      } else {
-        setSubmitStatus('error');
-        console.error('Form submission error:', data.error);
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-      console.error('Network error:', error);
-    } finally {
-      setIsSubmitting(false);
-    }
+    alert(t('contact.form.success'));
+    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    setIsSubmitting(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
     <div className="min-h-screen pt-20">
-      {/* Hero Section */}
+      {/* Hero Section - Dark Theme */}
       <section className="relative hero-dark text-white py-20">
         <div className="hero-network"></div>
         <div className="hero-glow-lines"></div>
@@ -61,25 +44,25 @@ export const Contact: React.FC = () => {
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl lg:text-6xl font-bold mb-6">{t('contact.title')}</h1>
-            <p className="text-xl text-white/90">{t('contact.subtitle')}</p>
+            <p className="text-xl text-white/90">
+              {t('contact.subtitle')}
+            </p>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Contact Form & Info */}
+      {/* Contact Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <AnimatedSection>
-              <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">{t('contact.form.title')}</h2>
-                <p className="text-gray-600 mb-8">{t('contact.info.description')}</p>
-
+            <AnimatedSection direction="left">
+              <div className="bg-white rounded-2xl shadow-xl p-8">
+                <h2 className="text-3xl text-gray-900 mb-6">{t('contact.form.title')}</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                      {t('contact.name')}
+                    <label htmlFor="name" className="block text-gray-700 mb-2">
+                      {t('contact.name')} *
                     </label>
                     <input
                       type="text"
@@ -87,15 +70,15 @@ export const Contact: React.FC = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder={t('contact.form.namePlaceholder')}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                       required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      placeholder={t('contact.form.namePlaceholder')}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      {t('contact.email')}
+                    <label htmlFor="email" className="block text-gray-700 mb-2">
+                      {t('contact.email')} *
                     </label>
                     <input
                       type="email"
@@ -103,14 +86,14 @@ export const Contact: React.FC = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder={t('contact.form.emailPlaceholder')}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                       required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      placeholder={t('contact.form.emailPlaceholder')}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="phone" className="block text-gray-700 mb-2">
                       {t('contact.phone')}
                     </label>
                     <input
@@ -119,21 +102,22 @@ export const Contact: React.FC = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                       placeholder={t('contact.form.phonePlaceholder')}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                      {t('contact.subject')}
+                    <label htmlFor="subject" className="block text-gray-700 mb-2">
+                      {t('contact.subject')} *
                     </label>
                     <select
                       id="subject"
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                     >
                       <option value="">{t('contact.form.subjectPlaceholder')}</option>
                       <option value="web">{t('contact.form.subject.web')}</option>
@@ -146,135 +130,166 @@ export const Contact: React.FC = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      {t('contact.message')}
+                    <label htmlFor="message" className="block text-gray-700 mb-2">
+                      {t('contact.message')} *
                     </label>
                     <textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder={t('contact.form.messagePlaceholder')}
-                      rows={6}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none"
                       required
+                      rows={6}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none"
+                      placeholder={t('contact.form.messagePlaceholder')}
                     />
                   </div>
 
-                  {submitStatus === 'success' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="flex items-center gap-2 p-4 bg-green-50 text-green-800 rounded-lg border border-green-200"
-                    >
-                      <CheckCircle2 className="w-5 h-5" />
-                      <span>{t('contact.form.success')}</span>
-                    </motion.div>
-                  )}
-
-                  {submitStatus === 'error' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="p-4 bg-red-50 text-red-800 rounded-lg border border-red-200"
-                    >
-                      {t('contact.form.error')}
-                    </motion.div>
-                  )}
-
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-orange-500 text-white px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-lg font-semibold"
+                    className="w-full bg-orange-500 text-white px-8 py-4 rounded-lg hover:bg-orange-600 transition-all flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? (
-                      <span>{t('contact.form.sending')}</span>
-                    ) : (
-                      <>
-                        <span>{t('contact.send')}</span>
-                        <Send className="w-5 h-5" />
-                      </>
-                    )}
-                  </button>
+                    <span>{isSubmitting ? t('contact.form.sending') : t('contact.send')}</span>
+                    <Send className="w-5 h-5" />
+                  </motion.button>
                 </form>
               </div>
             </AnimatedSection>
 
             {/* Contact Info */}
-            <div className="space-y-8">
-              <AnimatedSection delay={0.2}>
-                <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-2xl p-8 shadow-xl">
-                  <h3 className="text-2xl font-bold mb-6">{t('contact.info.title')}</h3>
-                  
-                  <div className="space-y-6">
-                    <div className="flex items-start gap-4">
-                      <div className="bg-white/20 p-3 rounded-lg">
-                        <Mail className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1">{t('contact.cards.email.title')}</h4>
-                        <a href="mailto:info@nexgentech.com" className="hover:underline">
-                          info@nexgentech.com
-                        </a>
-                      </div>
-                    </div>
+            <AnimatedSection direction="right">
+              <div className="space-y-8">
+                <div>
+                  <h2 className="text-3xl text-gray-900 mb-6">{t('contact.info.title')}</h2>
+                  <p className="text-lg text-gray-600 mb-8">
+                    {t('contact.info.description')}
+                  </p>
+                </div>
 
-                    <div className="flex items-start gap-4">
-                      <div className="bg-white/20 p-3 rounded-lg">
-                        <Phone className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1">{t('contact.cards.phone.title')}</h4>
-                        <a href="tel:+15551234567" className="hover:underline">
-                          +1 (555) 123-4567
-                        </a>
-                      </div>
+                {/* Contact Cards */}
+                <div className="space-y-4">
+                  <motion.div
+                    whileHover={{ x: 10 }}
+                    className="flex items-start space-x-4 p-6 bg-blue-50 rounded-xl"
+                  >
+                    <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-6 h-6 text-white" />
                     </div>
+                    <div>
+                      <h3 className="text-gray-900 mb-1">{t('contact.cards.email.title')}</h3>
+                      <a href="mailto:info@nexgentech.com" className="text-orange-500 hover:text-orange-600">
+                        info@nexgentech.com
+                      </a>
+                      <br />
+                      <a href="mailto:support@nexgentech.com" className="text-orange-500 hover:text-orange-600">
+                        support@nexgentech.com
+                      </a>
+                    </div>
+                  </motion.div>
 
-                    <div className="flex items-start gap-4">
-                      <div className="bg-white/20 p-3 rounded-lg">
-                        <MapPin className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1">{t('contact.cards.address.title')}</h4>
-                        <p>{t('contact.cards.address.line1')}</p>
-                        <p>{t('contact.cards.address.line2')}</p>
-                        <p>{t('contact.cards.address.line3')}</p>
-                      </div>
+                  <motion.div
+                    whileHover={{ x: 10 }}
+                    className="flex items-start space-x-4 p-6 bg-purple-50 rounded-xl"
+                  >
+                    <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-6 h-6 text-white" />
                     </div>
+                    <div>
+                      <h3 className="text-gray-900 mb-1">{t('contact.cards.phone.title')}</h3>
+                      <a href="tel:+15551234567" className="text-orange-600 hover:text-purple-700">
+                        +1 (555) 123-4567
+                      </a>
+                      <br />
+                      <a href="tel:+15559876543" className="text-orange-600 hover:text-purple-700">
+                        +1 (555) 987-6543
+                      </a>
+                    </div>
+                  </motion.div>
 
-                    <div className="flex items-start gap-4">
-                      <div className="bg-white/20 p-3 rounded-lg">
-                        <Clock className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1">{t('contact.cards.hours.title')}</h4>
-                        <p className="text-sm">{t('contact.cards.hours.weekdays')}</p>
-                        <p className="text-sm">{t('contact.cards.hours.saturday')}</p>
-                        <p className="text-sm">{t('contact.cards.hours.sunday')}</p>
-                      </div>
+                  <motion.div
+                    whileHover={{ x: 10 }}
+                    className="flex items-start space-x-4 p-6 bg-green-50 rounded-xl"
+                  >
+                    <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-6 h-6 text-white" />
                     </div>
-                  </div>
+                    <div>
+                      <h3 className="text-gray-900 mb-1">{t('contact.cards.address.title')}</h3>
+                      <p className="text-gray-600">
+                        {t('contact.cards.address.line1')}<br />
+                        {t('contact.cards.address.line2')}<br />
+                        {t('contact.cards.address.line3')}
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    whileHover={{ x: 10 }}
+                    className="flex items-start space-x-4 p-6 bg-orange-50 rounded-xl"
+                  >
+                    <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-gray-900 mb-1">{t('contact.cards.hours.title')}</h3>
+                      <p className="text-gray-600">
+                        {t('contact.cards.hours.weekdays')}<br />
+                        {t('contact.cards.hours.saturday')}<br />
+                        {t('contact.cards.hours.sunday')}
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Map */}
+                <div className="bg-gray-200 rounded-2xl h-64 flex items-center justify-center">
+                  <p className="text-gray-500">{t('contact.map.placeholder')}</p>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl text-gray-900 mb-4">{t('contact.faq.title')}</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              {t('contact.faq.subtitle')}
+            </p>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {[
+              {
+                q: t('contact.faq.items.1.q'),
+                a: t('contact.faq.items.1.a'),
+              },
+              {
+                q: t('contact.faq.items.2.q'),
+                a: t('contact.faq.items.2.a'),
+              },
+              {
+                q: t('contact.faq.items.3.q'),
+                a: t('contact.faq.items.3.a'),
+              },
+              {
+                q: t('contact.faq.items.4.q'),
+                a: t('contact.faq.items.4.a'),
+              },
+            ].map((item, index) => (
+              <AnimatedSection key={index} delay={index * 0.1}>
+                <div className="bg-white rounded-xl p-6 shadow-lg">
+                  <h3 className="text-lg text-gray-900 mb-3">{item.q}</h3>
+                  <p className="text-gray-600">{item.a}</p>
                 </div>
               </AnimatedSection>
-
-              {/* FAQ */}
-              <AnimatedSection delay={0.3}>
-                <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">{t('contact.faq.title')}</h3>
-                  <div className="space-y-4">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="border-b border-gray-200 pb-4 last:border-0">
-                        <h4 className="font-semibold text-gray-900 mb-2">
-                          {t(`contact.faq.items.${i}.q`)}
-                        </h4>
-                        <p className="text-gray-600">{t(`contact.faq.items.${i}.a`)}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </AnimatedSection>
-            </div>
+            ))}
           </div>
         </div>
       </section>

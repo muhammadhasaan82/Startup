@@ -101,7 +101,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({
                   whileHover={{ scale: 1.05 }}
                   className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all flex items-start space-x-3"
                 >
-                  <CheckCircle className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
+                  <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
                   <span className="text-gray-700">{feature}</span>
                 </motion.div>
               </AnimatedSection>
@@ -185,8 +185,8 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({
                 <motion.div
                   whileHover={{ y: -10 }}
                   className={`rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all ${pkg.popular
-                    ? 'bg-gradient-to-br from-orange-500 to-orange-600 text-white border-4 border-yellow-400'
-                    : 'bg-white border border-gray-200'
+                      ? 'bg-gradient-to-br from-orange-500 to-orange-600 text-white border-4 border-yellow-400'
+                      : 'bg-white border border-gray-200'
                     }`}
                 >
                   {pkg.popular && (
@@ -204,7 +204,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({
                   <ul className="space-y-3 mb-8">
                     {pkg.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start space-x-3">
-                        <CheckCircle className={`w-5 h-5 flex-shrink-0 mt-0.5 ${pkg.popular ? 'text-white' : 'text-orange-500'}`} />
+                        <CheckCircle className={`w-5 h-5 flex-shrink-0 mt-0.5 ${pkg.popular ? 'text-white' : 'text-green-500'}`} />
                         <span className={pkg.popular ? 'text-white/90' : 'text-gray-600'}>{feature}</span>
                       </li>
                     ))}
@@ -212,8 +212,8 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({
                   <Link
                     to="/contact"
                     className={`block text-center px-8 py-4 rounded-lg transition-all ${pkg.popular
-                      ? 'bg-white text-orange-500 hover:bg-gray-100'
-                      : 'bg-orange-500 text-white hover:bg-orange-600'
+                        ? 'bg-white text-orange-500 hover:bg-gray-100'
+                        : 'bg-orange-500 text-white hover:bg-orange-600'
                       }`}
                   >
                     {t('service.common.getStarted')}

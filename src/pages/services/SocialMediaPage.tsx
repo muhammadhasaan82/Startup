@@ -40,18 +40,18 @@ export const SocialMediaPage: React.FC = () => {
         packages: [
             {
                 name: t('services.social.package1.name'),
-                price: 'USD 36 – 64 /mo',
+                price: '$699',
                 features: t('services.social.package1.features').split(','),
             },
             {
                 name: t('services.social.package2.name'),
-                price: 'USD 71 – 125 /mo',
+                price: '$1,499',
                 popular: true,
                 features: t('services.social.package2.features').split(','),
             },
             {
                 name: t('services.social.package3.name'),
-                price: 'USD 107+ /mo',
+                price: '$2,999',
                 features: t('services.social.package3.features').split(','),
             },
         ],

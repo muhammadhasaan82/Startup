@@ -25,7 +25,6 @@ export const AnimatedBackground: React.FC = () => {
     let height = 0;
     let points: Particle[] = [];
     let animationId = 0;
-    let lastFrameTime = 0;
     const mouse: { x: number | null; y: number | null } = { x: null, y: null };
 
     const backgroundColor = theme === 'dark' ? '#000000' : '#ffffff';
@@ -33,11 +32,7 @@ export const AnimatedBackground: React.FC = () => {
       ? 'rgba(180, 120, 20, 0.35)'
       : 'rgba(180, 120, 20, 0.2)';
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const targetFrameMs = 1000 / 30;
-    const getPointCount = (w: number) => (w > 1200 ? 300 : w > 768 ? 200 : 100);
-    const connectionDistance = 90;
-    const maxConnectionsPerPoint = 6;
+    const getPointCount = (w: number) => (w > 1200 ? 660 : w > 768 ? 400 : 170);
 
     const resize = () => {
       const dpr = window.devicePixelRatio || 1;
@@ -69,18 +64,7 @@ export const AnimatedBackground: React.FC = () => {
       mouse.y = null;
     };
 
-    const draw = (timestamp = 0) => {
-      if (prefersReducedMotion.matches) {
-        ctx.fillStyle = backgroundColor;
-        ctx.fillRect(0, 0, width, height);
-        return;
-      }
-
-      if (timestamp - lastFrameTime < targetFrameMs) {
-        animationId = window.requestAnimationFrame(draw);
-        return;
-      }
-      lastFrameTime = timestamp;
+    const draw = () => {
       ctx.fillStyle = backgroundColor;
       ctx.fillRect(0, 0, width, height);
 
@@ -95,8 +79,8 @@ export const AnimatedBackground: React.FC = () => {
           const dx = mouse.x - p.x;
           const dy = mouse.y - p.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist > 0 && dist < connectionDistance) {
-            const force = 0.0015;
+          if (dist > 0 && dist < 120) {
+            const force = 0.002;
             p.vx += (dx / dist) * force;
             p.vy += (dy / dist) * force;
           }
@@ -104,20 +88,15 @@ export const AnimatedBackground: React.FC = () => {
       }
 
       for (let i = 0; i < points.length; i++) {
-        let connections = 0;
         for (let j = i + 1; j < points.length; j++) {
           const dist = Math.hypot(points[i].x - points[j].x, points[i].y - points[j].y);
-          if (dist < connectionDistance) {
+          if (dist < 120) {
             ctx.strokeStyle = strokeColor;
             ctx.lineWidth = 1.7;
             ctx.beginPath();
             ctx.moveTo(points[i].x, points[i].y);
             ctx.lineTo(points[j].x, points[j].y);
             ctx.stroke();
-            connections += 1;
-            if (connections >= maxConnectionsPerPoint) {
-              break;
-            }
           }
         }
       }
@@ -129,8 +108,8 @@ export const AnimatedBackground: React.FC = () => {
     draw();
 
     window.addEventListener('resize', resize);
-    container.addEventListener('mousemove', onMove, { passive: true });
-    container.addEventListener('mouseleave', onLeave, { passive: true });
+    container.addEventListener('mousemove', onMove);
+    container.addEventListener('mouseleave', onLeave);
 
     return () => {
       window.removeEventListener('resize', resize);

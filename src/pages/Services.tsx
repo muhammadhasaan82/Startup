@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
-import { ArrowRight, ShoppingCart, Globe, Search, Share2, Smartphone, Code, Box, Video } from 'lucide-react';
+import { ArrowRight, ShoppingCart, Globe, Megaphone, Search, Share2, Smartphone, Code, TrendingUp, Lock } from 'lucide-react';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { useLanguage } from '../contexts/LanguageContext';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
@@ -25,6 +25,14 @@ export const Services: React.FC = () => {
       description: 'Build responsive, fast, and SEO-optimized websites that engage visitors and drive conversions.',
       features: ['Responsive Design', 'CMS Integration', 'Fast Loading Speed', 'SEO Optimization', 'Security Features'],
       image: 'https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGNvZGluZ3xlbnwxfHx8fDE3NjQzODYyMDJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    },
+    {
+      title: 'Google Ads (PPC)',
+      slug: 'google-ads',
+      icon: <Megaphone className="w-12 h-12" />,
+      description: 'Drive targeted traffic and maximize ROI with expertly managed Google Ads campaigns.',
+      features: ['Campaign Strategy', 'Keyword Research', 'Ad Copywriting', 'Bid Management', 'Performance Tracking'],
+      image: 'https://images.unsplash.com/photo-1557838923-2985c318be48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwbWFya2V0aW5nfGVufDF8fHx8MTc2NDQyNjgzNnww&ixlib=rb-4.1.0&q=80&w=1080',
     },
     {
       title: 'Search Engine Optimization',
@@ -59,20 +67,20 @@ export const Services: React.FC = () => {
       image: 'https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGNvZGluZ3xlbnwxfHx8fDE3NjQzODYyMDJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
     },
     {
-      title: '3D Graphics Designing',
-      slug: '3d-graphics',
-      icon: <Box className="w-12 h-12" />,
-      description: 'Transform your ideas into stunning 3D visuals with professional modeling, rendering, and animation services.',
-      features: ['3D Modeling & Sculpting', 'Product Visualization', 'Architectural Rendering', 'Character Design', 'Animation & Motion Graphics'],
-      image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHwzZCUyMGdyYXBoaWNzfGVufDF8fHx8MTczODI0NTYwMHww&ixlib=rb-4.1.0&q=80&w=1080',
+      title: 'Outdoor Media Advertising',
+      slug: 'outdoor-media',
+      icon: <TrendingUp className="w-12 h-12" />,
+      description: 'Maximize brand visibility with strategic outdoor advertising campaigns.',
+      features: ['Billboard Advertising', 'Transit Advertising', 'Digital Displays', 'Location Planning', 'Campaign Management'],
+      image: 'https://images.unsplash.com/photo-1557838923-2985c318be48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwbWFya2V0aW5nfGVufDF8fHx8MTc2NDQyNjgzNnww&ixlib=rb-4.1.0&q=80&w=1080',
     },
     {
-      title: 'Video Editing',
-      slug: 'video-editing',
-      icon: <Video className="w-12 h-12" />,
-      description: 'Professional video editing services to create engaging content that captivates your audience and tells your story.',
-      features: ['Commercial Video Production', 'Social Media Content', 'Color Grading & Correction', 'Motion Graphics & VFX', 'Audio Enhancement'],
-      image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2aWRlbyUyMGVkaXRpbmd8ZW58MXx8fHwxNzM4MjQ1NjAwfDA&ixlib=rb-4.1.0&q=80&w=1080',
+      title: 'Blockchain Development',
+      slug: 'blockchain',
+      icon: <Lock className="w-12 h-12" />,
+      description: 'Leverage blockchain technology for secure, transparent, and decentralized solutions.',
+      features: ['Smart Contracts', 'DApp Development', 'Cryptocurrency', 'NFT Platforms', 'Blockchain Consulting'],
+      image: 'https://images.unsplash.com/photo-1666816943035-15c29931e975?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxibG9ja2NoYWluJTIwdGVjaG5vbG9neXxlbnwxfHx8fDE3NjQ0MzExMDh8MA&ixlib=rb-4.1.0&q=80&w=1080',
     },
   ];
 

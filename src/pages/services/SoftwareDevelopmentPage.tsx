@@ -40,18 +40,18 @@ export const SoftwareDevelopmentPage: React.FC = () => {
         packages: [
             {
                 name: t('services.software.package1.name'),
-                price: 'USD 179+',
+                price: '$15,000',
                 features: t('services.software.package1.features').split(','),
             },
             {
                 name: t('services.software.package2.name'),
-                price: 'USD 143+',
+                price: '$45,000',
                 popular: true,
                 features: t('services.software.package2.features').split(','),
             },
             {
                 name: t('services.software.package3.name'),
-                price: 'USD 54+',
+                price: 'Custom',
                 features: t('services.software.package3.features').split(','),
             },
         ],
