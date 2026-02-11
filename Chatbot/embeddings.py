@@ -36,13 +36,14 @@ class EmbeddingManager:
             try:
                 EmbeddingManager._model = SentenceTransformer(
                     config.EMBEDDING_MODEL,
-                    trust_remote_code=True,
-                    device='cpu'
+                    trust_remote_code=True
                 )
                 logger.info("Embedding model loaded successfully")
             except Exception as e:
                 logger.error(f"Failed to load embedding model: {e}")
-                raise RuntimeError(f"BAAI/bge-m3 is required. Error: {e}")
+                # Fallback to a smaller model
+                logger.info("Falling back to all-MiniLM-L6-v2")
+                EmbeddingManager._model = SentenceTransformer('all-MiniLM-L6-v2')
     
     @property
     def model(self) -> SentenceTransformer:
