@@ -2654,8 +2654,13 @@ html {
   border: 1px solid #ddd;
   border-radius: 25px;
   outline: none;
+  color: #000;
   font-size: 14px;
   transition: border-color 0.2s ease;
+}
+
+.message-input::placeholder {
+  color: #9ca3af;
 }
 
 .message-input:focus {
