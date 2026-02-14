@@ -606,18 +606,18 @@ export const Home: React.FC = () => {
           onClick={() => setIsDemoOpen(false)}
         >
           <div
-            className="relative w-[95%] md:w-[85%] lg:w-[70%] max-w-[1400px] bg-black rounded-xl p-5 border border-orange-500/30 shadow-2xl"
+            className="relative w-[95vw] md:w-[720px] max-w-[720px] bg-black rounded-xl p-4 md:p-5 border border-orange-500/30 shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <button
               type="button"
               onClick={() => setIsDemoOpen(false)}
-              className="absolute -top-3 -right-3 z-10 p-2.5 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition-colors shadow-lg"
+              className="absolute top-3 right-3 z-10 p-2.5 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition-colors shadow-lg"
               aria-label="Close video"
             >
               <X className="w-5 h-5" />
             </button>
-            <div className="relative w-full aspect-square rounded-lg overflow-hidden">
+            <div className="relative w-full aspect-[3/2] rounded-lg overflow-hidden">
               <iframe
                 className="absolute inset-0 w-full h-full"
                 src="https://www.youtube.com/embed/MdOanVqkeG8?autoplay=1&rel=0"
