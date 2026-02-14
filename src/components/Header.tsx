@@ -55,6 +55,9 @@ export const Header: React.FC = () => {
   ];
   const visibleLanguageCount = Math.ceil(languages.length / 2);
   const desktopLanguageListHeight = visibleLanguageCount * 44;
+  const handleLanguageScroll = (event: React.WheelEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
 
   // Dynamic classes for dark mode support
   const headerBg = theme === 'dark'
@@ -156,7 +159,9 @@ export const Header: React.FC = () => {
                     <div className={`${dropdownBg} rounded-lg shadow-xl overflow-hidden`}>
                       <div
                         className="language-scrollbar overflow-y-scroll py-2 pr-1"
-                        style={{ maxHeight: `${desktopLanguageListHeight}px` }}
+                        style={{ height: `${desktopLanguageListHeight}px` }}
+                        onWheel={handleLanguageScroll}
+                        onTouchMove={(event) => event.stopPropagation()}
                       >
                         {languages.map((lang) => (
                           <button
@@ -245,7 +250,7 @@ export const Header: React.FC = () => {
                 {/* Mobile Theme Toggle */}
                 {/* Mobile Language Selector */}
                 <div className={`pt-4 border-t ${borderColor}`}>
-                  <div className="language-scrollbar grid grid-cols-2 gap-2 max-h-64 overflow-y-scroll pr-1">
+                  <div className="grid grid-cols-2 gap-2 max-h-64 overflow-y-auto pr-1">
                     {languages.map((lang) => (
                       <button
                         key={lang.code}

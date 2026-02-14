@@ -2540,6 +2540,8 @@ html {
 .language-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: #f97316 #1e293b;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .language-scrollbar::-webkit-scrollbar {
