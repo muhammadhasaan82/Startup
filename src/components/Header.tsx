@@ -155,7 +155,7 @@ export const Header: React.FC = () => {
                   >
                     <div className={`${dropdownBg} rounded-lg shadow-xl overflow-hidden`}>
                       <div
-                        className="overflow-y-auto py-2"
+                        className="language-scrollbar overflow-y-scroll py-2 pr-1"
                         style={{ maxHeight: `${desktopLanguageListHeight}px` }}
                       >
                         {languages.map((lang) => (
@@ -245,7 +245,7 @@ export const Header: React.FC = () => {
                 {/* Mobile Theme Toggle */}
                 {/* Mobile Language Selector */}
                 <div className={`pt-4 border-t ${borderColor}`}>
-                  <div className="grid grid-cols-2 gap-2 max-h-64 overflow-y-auto pr-1">
+                  <div className="language-scrollbar grid grid-cols-2 gap-2 max-h-64 overflow-y-scroll pr-1">
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
