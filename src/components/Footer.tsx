@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router';
-import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Facebook, X, Instagram, Youtube, Mail, Phone, MapPin, Send } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
@@ -47,19 +47,36 @@ export const Footer: React.FC = () => {
               {t('footer.tagline')}
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="hover:text-orange-500 transition-colors">
+              <a
+                href="https://www.facebook.com/profile.php?id=61585558202243"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-orange-500 transition-colors"
+              >
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-orange-500 transition-colors">
-                <Twitter className="w-5 h-5" />
+              <a
+                href="https://x.com/NexGenTeck"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-orange-500 transition-colors"
+              >
+                <X className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-orange-500 transition-colors">
+              <a
+                href="https://www.instagram.com/nexgenteck?igsh=MWxhcW93ejM3bjZzcQ=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-orange-500 transition-colors"
+              >
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-orange-500 transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="#" className="hover:text-orange-500 transition-colors">
+              <a
+                href="https://www.youtube.com/@NexGenTeckcom"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-orange-500 transition-colors"
+              >
                 <Youtube className="w-5 h-5" />
               </a>
             </div>
@@ -78,7 +95,7 @@ export const Footer: React.FC = () => {
               <li><Link to="/about#team" className="hover:text-orange-500 transition-colors">{t('about.team')}</Link></li>
               <li><Link to="/about#partners" className="hover:text-orange-500 transition-colors">{t('about.partners')}</Link></li>
               <li><Link to="/portfolio" className="hover:text-orange-500 transition-colors">{t('nav.portfolio')}</Link></li>
-              <li><Link to="/blog" className="hover:text-orange-500 transition-colors">{t('nav.blog')}</Link></li>
+              <li className="hidden"><Link to="/blog" className="hover:text-orange-500 transition-colors">{t('nav.blog')}</Link></li>
               <li><Link to="/contact" className="hover:text-orange-500 transition-colors">{t('nav.contact')}</Link></li>
             </ul>
           </motion.div>
@@ -134,15 +151,15 @@ export const Footer: React.FC = () => {
             <div className="mt-6 space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-orange-500" />
-                <span>info@nexgentech.com</span>
+                <span>info@nexgenteck.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-orange-500" />
-                <span>+1 (555) 123-4567</span>
+                <span>+92 300 927 0131</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-orange-500" />
-                <span>123 Tech Street, Digital City</span>
+                <span>Shahra-e-Faisal, Karachi, Pakistan</span>
               </div>
             </div>
           </motion.div>
@@ -154,9 +171,9 @@ export const Footer: React.FC = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-center md:text-left">
-              © 2025 NexGenTeck. {t('footer.rights')}
+              {t('footer.rights')}
             </p>
-            <div className="flex space-x-6">
+            <div className="hidden space-x-6" aria-hidden>
               <Link to="/privacy" className="text-gray-400 hover:text-orange-500 transition-colors">
                 {t('footer.privacy')}
               </Link>
@@ -173,3 +190,4 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
+

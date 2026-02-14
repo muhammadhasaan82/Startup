@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
-import { ArrowRight, CheckCircle2, Quote, Star } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Quote, Star, X } from 'lucide-react';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { useLanguage } from '../contexts/LanguageContext';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
@@ -16,9 +16,10 @@ import {
 } from '../components/ui/carousel';
 
 export const Home: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [carouselApi, setCarouselApi] = React.useState<CarouselApi>();
   const [currentSlide, setCurrentSlide] = React.useState(0);
+  const [isDemoOpen, setIsDemoOpen] = React.useState(false);
 
   // Typewriter phrases for hero animation - using translations
   const typewriterPhrases = [
@@ -68,6 +69,19 @@ export const Home: React.FC = () => {
       setCurrentSlide(carouselApi.selectedScrollSnap());
     });
   }, [carouselApi]);
+
+  React.useEffect(() => {
+    if (!isDemoOpen) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsDemoOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [isDemoOpen]);
 
   const services = [
     {
@@ -240,13 +254,14 @@ export const Home: React.FC = () => {
                             <ArrowRight className="w-5 h-5" />
                           </Link>
                           {/* Secondary CTA Button (if exists) */}
-                          {'ctaSecondary' in slide && slide.ctaSecondary && (
-                            <Link
-                              to="/services"
+                          {'ctaSecondary' in slide && slide.ctaSecondary && language === 'en' && (
+                            <button
+                              type="button"
+                              onClick={() => setIsDemoOpen(true)}
                               className="inline-flex items-center space-x-2 bg-transparent border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white/10 transition-all font-bold text-base"
                             >
                               <span>{slide.ctaSecondary}</span>
-                            </Link>
+                            </button>
                           )}
                         </motion.div>
                       </motion.div>
@@ -584,6 +599,35 @@ export const Home: React.FC = () => {
           </AnimatedSection>
         </div>
       </section>
+
+      {isDemoOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4"
+          onClick={() => setIsDemoOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden border border-white/20"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setIsDemoOpen(false)}
+              className="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/70 text-white hover:bg-black transition-colors"
+              aria-label="Close video"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/MdOanVqkeG8?autoplay=1&rel=0"
+              title="NexGenTeck Quick Demo"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

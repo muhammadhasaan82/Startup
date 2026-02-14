@@ -224,12 +224,8 @@ export const Contact: React.FC = () => {
                     </div>
                     <div>
                       <h3 className="text-gray-900 mb-1">{t('contact.cards.email.title')}</h3>
-                      <a href="mailto:info@nexgentech.com" className="text-orange-500 hover:text-orange-600">
-                        info@nexgentech.com
-                      </a>
-                      <br />
-                      <a href="mailto:support@nexgentech.com" className="text-orange-500 hover:text-orange-600">
-                        support@nexgentech.com
+                      <a href="mailto:info@nexgenteck.com" className="text-orange-500 hover:text-orange-600">
+                        info@nexgenteck.com
                       </a>
                     </div>
                   </motion.div>
@@ -243,12 +239,8 @@ export const Contact: React.FC = () => {
                     </div>
                     <div>
                       <h3 className="text-gray-900 mb-1">{t('contact.cards.phone.title')}</h3>
-                      <a href="tel:+15551234567" className="text-orange-600 hover:text-purple-700">
-                        +1 (555) 123-4567
-                      </a>
-                      <br />
-                      <a href="tel:+15559876543" className="text-orange-600 hover:text-purple-700">
-                        +1 (555) 987-6543
+                      <a href="tel:+923009270131" className="text-orange-600 hover:text-purple-700">
+                        +92 300 927 0131
                       </a>
                     </div>
                   </motion.div>
@@ -264,8 +256,13 @@ export const Contact: React.FC = () => {
                       <h3 className="text-gray-900 mb-1">{t('contact.cards.address.title')}</h3>
                       <p className="text-gray-600">
                         {t('contact.cards.address.line1')}<br />
-                        {t('contact.cards.address.line2')}<br />
-                        {t('contact.cards.address.line3')}
+                        {t('contact.cards.address.line2')}
+                        {t('contact.cards.address.line3') && (
+                          <>
+                            <br />
+                            {t('contact.cards.address.line3')}
+                          </>
+                        )}
                       </p>
                     </div>
                   </motion.div>
