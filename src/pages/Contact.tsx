@@ -78,7 +78,7 @@ export const Contact: React.FC = () => {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <AnimatedSection direction="left">
-              <div className="bg-black/60 backdrop-blur-md border border-orange-500/30 rounded-2xl shadow-xl shadow-black/40 p-8">
+              <div className="bg-[#1a1a1a] border border-white/5 rounded-2xl shadow-xl shadow-black/40 p-8">
                 <h2 className="text-3xl text-white mb-6">{t('contact.form.title')}</h2>
                 
                 {/* Success Message */}
@@ -217,7 +217,7 @@ export const Contact: React.FC = () => {
                 <div className="space-y-4">
                   <motion.div
                     whileHover={{ x: 10 }}
-                    className="flex items-start space-x-4 p-6 bg-black/60 backdrop-blur-md border border-orange-500/30 rounded-xl"
+                    className="flex items-start space-x-4 p-6 bg-[#1a1a1a] border border-white/5 rounded-xl"
                   >
                     <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Mail className="w-6 h-6 text-white" />
@@ -232,7 +232,7 @@ export const Contact: React.FC = () => {
 
                   <motion.div
                     whileHover={{ x: 10 }}
-                    className="flex items-start space-x-4 p-6 bg-black/60 backdrop-blur-md border border-orange-500/30 rounded-xl"
+                    className="flex items-start space-x-4 p-6 bg-[#1a1a1a] border border-white/5 rounded-xl"
                   >
                     <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Phone className="w-6 h-6 text-white" />
@@ -247,7 +247,7 @@ export const Contact: React.FC = () => {
 
                   <motion.div
                     whileHover={{ x: 10 }}
-                    className="flex items-start space-x-4 p-6 bg-black/60 backdrop-blur-md border border-orange-500/30 rounded-xl"
+                    className="flex items-start space-x-4 p-6 bg-[#1a1a1a] border border-white/5 rounded-xl"
                   >
                     <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
                       <MapPin className="w-6 h-6 text-white" />
@@ -269,7 +269,7 @@ export const Contact: React.FC = () => {
 
                   <motion.div
                     whileHover={{ x: 10 }}
-                    className="flex items-start space-x-4 p-6 bg-black/60 backdrop-blur-md border border-orange-500/30 rounded-xl"
+                    className="flex items-start space-x-4 p-6 bg-[#1a1a1a] border border-white/5 rounded-xl"
                   >
                     <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Clock className="w-6 h-6 text-white" />
@@ -286,7 +286,7 @@ export const Contact: React.FC = () => {
                 </div>
 
                 {/* Map */}
-                <div className="bg-black/60 backdrop-blur-md border border-orange-500/30 rounded-2xl h-64 flex items-center justify-center">
+                <div className="bg-[#1a1a1a] border border-white/5 rounded-2xl h-64 flex items-center justify-center">
                   <p className="text-gray-500">{t('contact.map.placeholder')}</p>
                 </div>
               </div>
@@ -325,7 +325,7 @@ export const Contact: React.FC = () => {
               },
             ].map((item, index) => (
               <AnimatedSection key={index} delay={index * 0.1}>
-                <div className="bg-black/60 backdrop-blur-md border border-orange-500/30 rounded-xl p-6 shadow-lg shadow-black/40">
+                <div className="bg-[#1a1a1a] border border-white/5 rounded-xl p-6 shadow-lg shadow-black/40">
                   <h3 className="text-lg text-white mb-3">{item.q}</h3>
                   <p className="text-gray-300">{item.a}</p>
                 </div>

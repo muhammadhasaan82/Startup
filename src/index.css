@@ -2602,8 +2602,8 @@ html {
 }
 
 .contact-subject-select {
-  color: #000;
-  background-color: #fff;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .contact-subject-select option {
