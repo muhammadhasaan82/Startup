@@ -602,29 +602,31 @@ export const Home: React.FC = () => {
 
       {isDemoOpen && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-8"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 p-4"
           onClick={() => setIsDemoOpen(false)}
         >
           <div
-            className="relative w-full max-w-[95vw] md:max-w-[80vw] lg:max-w-[75vw] xl:max-w-[70vw] aspect-video bg-[#1a1a1a] rounded-2xl overflow-hidden border-2 border-orange-500/50 shadow-2xl shadow-orange-500/20"
+            className="relative w-[95%] md:w-[90%] max-w-[1000px] bg-black rounded-xl p-5 border border-orange-500/30 shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <button
               type="button"
               onClick={() => setIsDemoOpen(false)}
-              className="absolute top-4 right-4 z-10 p-3 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition-all hover:scale-110 shadow-lg"
+              className="absolute -top-3 -right-3 z-10 p-2.5 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition-colors shadow-lg"
               aria-label="Close video"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             </button>
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/MdOanVqkeG8?autoplay=1&rel=0"
-              title="NexGenTeck Quick Demo"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            />
+            <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube.com/embed/MdOanVqkeG8?autoplay=1&rel=0"
+                title="NexGenTeck Quick Demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
           </div>
         </div>
       )}
