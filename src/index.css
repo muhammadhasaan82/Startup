@@ -2601,6 +2601,21 @@ html {
   background: rgba(255, 255, 255, 0.45);
 }
 
+.contact-subject-select {
+  color: #000;
+  background-color: #fff;
+}
+
+.contact-subject-select option {
+  color: #000;
+  background-color: #fff;
+}
+
+.contact-subject-select option:checked {
+  color: #fff;
+  background: #f97316 linear-gradient(#f97316, #f97316);
+}
+
 .empty-state {
   display: flex;
   flex-direction: column;

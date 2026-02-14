@@ -73,22 +73,22 @@ export const Contact: React.FC = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-black">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <AnimatedSection direction="left">
-              <div className="bg-white rounded-2xl shadow-xl p-8">
-                <h2 className="text-3xl text-gray-900 mb-6">{t('contact.form.title')}</h2>
+              <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl shadow-xl shadow-black/40 p-8">
+                <h2 className="text-3xl text-white mb-6">{t('contact.form.title')}</h2>
                 
                 {/* Success Message */}
                 {submitStatus === 'success' && (
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg"
+                    className="mb-6 p-4 bg-[#111111] border border-orange-500/50 rounded-lg"
                   >
-                    <p className="text-green-800 font-medium">{t('contact.form.success')}</p>
+                    <p className="text-orange-300 font-medium">{t('contact.form.success')}</p>
                   </motion.div>
                 )}
 
@@ -97,15 +97,15 @@ export const Contact: React.FC = () => {
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg"
+                    className="mb-6 p-4 bg-[#111111] border border-orange-500/50 rounded-lg"
                   >
-                    <p className="text-red-800 font-medium">{t('contact.form.error')}</p>
+                    <p className="text-orange-300 font-medium">{t('contact.form.error')}</p>
                   </motion.div>
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-gray-700 mb-2">
+                    <label htmlFor="name" className="block text-gray-300 mb-2">
                       {t('contact.name')} *
                     </label>
                     <input
@@ -115,13 +115,13 @@ export const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-4 py-3 bg-black/40 text-white border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 placeholder:text-gray-500"
                       placeholder={t('contact.form.namePlaceholder')}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-gray-300 mb-2">
                       {t('contact.email')} *
                     </label>
                     <input
@@ -131,13 +131,13 @@ export const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-4 py-3 bg-black/40 text-white border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 placeholder:text-gray-500"
                       placeholder={t('contact.form.emailPlaceholder')}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-gray-700 mb-2">
+                    <label htmlFor="phone" className="block text-gray-300 mb-2">
                       {t('contact.phone')}
                     </label>
                     <input
@@ -146,13 +146,13 @@ export const Contact: React.FC = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-4 py-3 bg-black/40 text-white border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 placeholder:text-gray-500"
                       placeholder={t('contact.form.phonePlaceholder')}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-gray-700 mb-2">
+                    <label htmlFor="subject" className="block text-gray-300 mb-2">
                       {t('contact.subject')} *
                     </label>
                     <select
@@ -161,20 +161,20 @@ export const Contact: React.FC = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="contact-subject-select w-full px-4 py-3 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 bg-white text-black"
                     >
-                      <option value="">{t('contact.form.subjectPlaceholder')}</option>
-                      <option value="web">{t('contact.form.subject.web')}</option>
-                      <option value="mobile">{t('contact.form.subject.mobile')}</option>
-                      <option value="ecommerce">{t('contact.form.subject.ecommerce')}</option>
-                      <option value="marketing">{t('contact.form.subject.marketing')}</option>
-                      <option value="seo">{t('contact.form.subject.seo')}</option>
-                      <option value="other">{t('contact.form.subject.other')}</option>
+                      <option value="" className="bg-white text-black">{t('contact.form.subjectPlaceholder')}</option>
+                      <option value="web" className="bg-white text-black">{t('contact.form.subject.web')}</option>
+                      <option value="mobile" className="bg-white text-black">{t('contact.form.subject.mobile')}</option>
+                      <option value="ecommerce" className="bg-white text-black">{t('contact.form.subject.ecommerce')}</option>
+                      <option value="marketing" className="bg-white text-black">{t('contact.form.subject.marketing')}</option>
+                      <option value="seo" className="bg-white text-black">{t('contact.form.subject.seo')}</option>
+                      <option value="other" className="bg-white text-black">{t('contact.form.subject.other')}</option>
                     </select>
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-gray-700 mb-2">
+                    <label htmlFor="message" className="block text-gray-300 mb-2">
                       {t('contact.message')} *
                     </label>
                     <textarea
@@ -184,7 +184,7 @@ export const Contact: React.FC = () => {
                       onChange={handleChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none"
+                      className="w-full px-4 py-3 bg-black/40 text-white border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 resize-none placeholder:text-gray-500"
                       placeholder={t('contact.form.messagePlaceholder')}
                     />
                   </div>
@@ -207,8 +207,8 @@ export const Contact: React.FC = () => {
             <AnimatedSection direction="right">
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-3xl text-gray-900 mb-6">{t('contact.info.title')}</h2>
-                  <p className="text-lg text-gray-600 mb-8">
+                  <h2 className="text-3xl text-white mb-6">{t('contact.info.title')}</h2>
+                  <p className="text-lg text-gray-300 mb-8">
                     {t('contact.info.description')}
                   </p>
                 </div>
@@ -217,14 +217,14 @@ export const Contact: React.FC = () => {
                 <div className="space-y-4">
                   <motion.div
                     whileHover={{ x: 10 }}
-                    className="flex items-start space-x-4 p-6 bg-blue-50 rounded-xl"
+                    className="flex items-start space-x-4 p-6 bg-[#111111] border border-white/10 rounded-xl"
                   >
                     <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Mail className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-gray-900 mb-1">{t('contact.cards.email.title')}</h3>
-                      <a href="mailto:info@nexgenteck.com" className="text-orange-500 hover:text-orange-600">
+                      <h3 className="text-white mb-1">{t('contact.cards.email.title')}</h3>
+                      <a href="mailto:info@nexgenteck.com" className="text-orange-400 hover:text-orange-300">
                         info@nexgenteck.com
                       </a>
                     </div>
@@ -232,14 +232,14 @@ export const Contact: React.FC = () => {
 
                   <motion.div
                     whileHover={{ x: 10 }}
-                    className="flex items-start space-x-4 p-6 bg-purple-50 rounded-xl"
+                    className="flex items-start space-x-4 p-6 bg-[#111111] border border-white/10 rounded-xl"
                   >
-                    <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Phone className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-gray-900 mb-1">{t('contact.cards.phone.title')}</h3>
-                      <a href="tel:+923009270131" className="text-orange-600 hover:text-purple-700">
+                      <h3 className="text-white mb-1">{t('contact.cards.phone.title')}</h3>
+                      <a href="tel:+923009270131" className="text-orange-400 hover:text-orange-300">
                         +92 300 927 0131
                       </a>
                     </div>
@@ -247,14 +247,14 @@ export const Contact: React.FC = () => {
 
                   <motion.div
                     whileHover={{ x: 10 }}
-                    className="flex items-start space-x-4 p-6 bg-green-50 rounded-xl"
+                    className="flex items-start space-x-4 p-6 bg-[#111111] border border-white/10 rounded-xl"
                   >
-                    <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
                       <MapPin className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-gray-900 mb-1">{t('contact.cards.address.title')}</h3>
-                      <p className="text-gray-600">
+                      <h3 className="text-white mb-1">{t('contact.cards.address.title')}</h3>
+                      <p className="text-gray-300">
                         {t('contact.cards.address.line1')}<br />
                         {t('contact.cards.address.line2')}
                         {t('contact.cards.address.line3') && (
@@ -269,14 +269,14 @@ export const Contact: React.FC = () => {
 
                   <motion.div
                     whileHover={{ x: 10 }}
-                    className="flex items-start space-x-4 p-6 bg-orange-50 rounded-xl"
+                    className="flex items-start space-x-4 p-6 bg-[#111111] border border-white/10 rounded-xl"
                   >
-                    <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Clock className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-gray-900 mb-1">{t('contact.cards.hours.title')}</h3>
-                      <p className="text-gray-600">
+                      <h3 className="text-white mb-1">{t('contact.cards.hours.title')}</h3>
+                      <p className="text-gray-300">
                         {t('contact.cards.hours.weekdays')}<br />
                         {t('contact.cards.hours.saturday')}<br />
                         {t('contact.cards.hours.sunday')}
@@ -286,7 +286,7 @@ export const Contact: React.FC = () => {
                 </div>
 
                 {/* Map */}
-                <div className="bg-gray-200 rounded-2xl h-64 flex items-center justify-center">
+                <div className="bg-[#111111] border border-white/10 rounded-2xl h-64 flex items-center justify-center">
                   <p className="text-gray-500">{t('contact.map.placeholder')}</p>
                 </div>
               </div>
@@ -296,11 +296,11 @@ export const Contact: React.FC = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-black">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl text-gray-900 mb-4">{t('contact.faq.title')}</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-4xl lg:text-5xl text-white mb-4">{t('contact.faq.title')}</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               {t('contact.faq.subtitle')}
             </p>
           </AnimatedSection>
@@ -325,9 +325,9 @@ export const Contact: React.FC = () => {
               },
             ].map((item, index) => (
               <AnimatedSection key={index} delay={index * 0.1}>
-                <div className="bg-white rounded-xl p-6 shadow-lg">
-                  <h3 className="text-lg text-gray-900 mb-3">{item.q}</h3>
-                  <p className="text-gray-600">{item.a}</p>
+                <div className="bg-[#111111] border border-white/10 rounded-xl p-6 shadow-lg shadow-black/40">
+                  <h3 className="text-lg text-white mb-3">{item.q}</h3>
+                  <p className="text-gray-300">{item.a}</p>
                 </div>
               </AnimatedSection>
             ))}

@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router';
-import { Facebook, X, Instagram, Youtube, Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Facebook, Instagram, Youtube, Mail, Phone, MapPin, Send } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
 import logo from '../nexgentech-01.png';
+
+const XLogo: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    viewBox="0 0 512 512"
+    fill="currentColor"
+    aria-hidden="true"
+    className={className}
+  >
+    <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172L272.3 180.9 389.2 48zM364.4 421.8h39.1L150.8 88.3H108.9z" />
+  </svg>
+);
 
 export const Footer: React.FC = () => {
   const { t } = useLanguage();
@@ -51,7 +62,7 @@ export const Footer: React.FC = () => {
                 href="https://www.facebook.com/profile.php?id=61585558202243"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-orange-500 transition-colors"
+                className="text-white hover:text-orange-500 transition-colors"
               >
                 <Facebook className="w-5 h-5" />
               </a>
@@ -59,15 +70,15 @@ export const Footer: React.FC = () => {
                 href="https://x.com/NexGenTeck"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-orange-500 transition-colors"
+                className="text-white hover:text-orange-500 transition-colors"
               >
-                <X className="w-5 h-5" />
+                <XLogo className="w-5 h-5" />
               </a>
               <a
                 href="https://www.instagram.com/nexgenteck?igsh=MWxhcW93ejM3bjZzcQ=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-orange-500 transition-colors"
+                className="text-white hover:text-orange-500 transition-colors"
               >
                 <Instagram className="w-5 h-5" />
               </a>
@@ -75,7 +86,7 @@ export const Footer: React.FC = () => {
                 href="https://www.youtube.com/@NexGenTeckcom"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-orange-500 transition-colors"
+                className="text-white hover:text-orange-500 transition-colors"
               >
                 <Youtube className="w-5 h-5" />
               </a>
