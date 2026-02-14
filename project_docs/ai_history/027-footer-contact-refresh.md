@@ -7,7 +7,7 @@
 - Updated the footer tagline to “Your Digital Backbone” and copyright to “© 2026 NexGenTeck | All rights reserved.” across all languages.
 - Refreshed contact details to the Karachi office: Shahra-e-Faisal, Karachi, Pakistan, phone +92 300 927 0131, email info@nexgenteck.com (footer, contact page, pricing CTA, and placeholders).
 - Hid the Blog and legal footer links while keeping the code intact; disabled Blog routing so the section stays unavailable without deletion.
-- Confirmed the hero “Watch a Quick Demo” keeps the provided YouTube link and only appears for English; footer socials now surface the X icon and current Facebook/Instagram/YouTube links.
+- Confirmed the hero “Watch a Quick Intro” keeps the provided YouTube link and only appears for English; footer socials now surface the X icon and current Facebook/Instagram/YouTube links.
 
 ## Changes
 - `src/components/Footer.tsx` — updated contact email, unhid X icon with link, confirmed social URLs, and hid legal links.
