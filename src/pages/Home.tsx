@@ -129,10 +129,10 @@ export const Home: React.FC = () => {
   ];
 
   const stats = [
-    { number: '750+', labelKey: 'stats.projects' },
-    { number: '450+', labelKey: 'stats.clients' },
-    { number: '85+', labelKey: 'stats.team' },
-    { number: '15+', labelKey: 'stats.experience' },
+    { number: '30+', labelKey: 'stats.projects' },
+    { number: '23+', labelKey: 'stats.clients' },
+    { number: '18', labelKey: 'stats.team' },
+    { number: '3+', labelKey: 'stats.experience' },
   ];
 
   const testimonials = [
@@ -602,20 +602,20 @@ export const Home: React.FC = () => {
 
       {isDemoOpen && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-8"
           onClick={() => setIsDemoOpen(false)}
         >
           <div
-            className="relative w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden border border-white/20"
+            className="relative w-full max-w-[95vw] md:max-w-[80vw] lg:max-w-[75vw] xl:max-w-[70vw] aspect-video bg-[#1a1a1a] rounded-2xl overflow-hidden border-2 border-orange-500/50 shadow-2xl shadow-orange-500/20"
             onClick={(event) => event.stopPropagation()}
           >
             <button
               type="button"
               onClick={() => setIsDemoOpen(false)}
-              className="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/70 text-white hover:bg-black transition-colors"
+              className="absolute top-4 right-4 z-10 p-3 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition-all hover:scale-110 shadow-lg"
               aria-label="Close video"
             >
-              <X className="w-5 h-5" />
+              <X className="w-6 h-6" />
             </button>
             <iframe
               className="w-full h-full"
