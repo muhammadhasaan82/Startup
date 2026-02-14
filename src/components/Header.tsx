@@ -54,6 +54,7 @@ export const Header: React.FC = () => {
     { name: 'services.videoediting', path: '/services/video-editing' },
   ];
   const visibleLanguageCount = Math.ceil(languages.length / 2);
+  const desktopLanguageListHeight = visibleLanguageCount * 44;
 
   // Dynamic classes for dark mode support
   const headerBg = theme === 'dark'
@@ -150,23 +151,29 @@ export const Header: React.FC = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className={`absolute top-full right-0 mt-2 w-40 ${dropdownBg} rounded-lg shadow-xl py-2 overflow-y-auto`}
-                    style={{ maxHeight: `${visibleLanguageCount * 40}px` }}
+                    className="absolute top-full right-0 mt-2 w-44 z-[60]"
                   >
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => {
-                          setLanguage(lang.code);
-                          setIsLangOpen(false);
-                        }}
-                        className={`w-full text-left px-4 py-2 ${dropdownHover} transition-colors flex items-center space-x-2 ${language === lang.code ? 'text-orange-500' : textColor
-                          }`}
+                    <div className={`${dropdownBg} rounded-lg shadow-xl overflow-hidden`}>
+                      <div
+                        className="overflow-y-auto py-2"
+                        style={{ maxHeight: `${desktopLanguageListHeight}px` }}
                       >
-                        <img src={lang.flag} alt={lang.name} className="w-5 h-4 object-cover rounded-sm" />
-                        <span>{lang.name}</span>
-                      </button>
-                    ))}
+                        {languages.map((lang) => (
+                          <button
+                            key={lang.code}
+                            onClick={() => {
+                              setLanguage(lang.code);
+                              setIsLangOpen(false);
+                            }}
+                            className={`w-full text-left px-4 py-2 ${dropdownHover} transition-colors flex items-center space-x-2 ${language === lang.code ? 'text-orange-500' : textColor
+                              }`}
+                          >
+                            <img src={lang.flag} alt={lang.name} className="w-5 h-4 object-cover rounded-sm" />
+                            <span>{lang.name}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
