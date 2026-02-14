@@ -2609,11 +2609,17 @@ html {
 .contact-subject-select option {
   color: #000;
   background-color: #fff;
+  padding: 12px;
+}
+
+.contact-subject-select option:hover {
+  background-color: #f97316 !important;
+  color: #fff !important;
 }
 
 .contact-subject-select option:checked {
+  background-color: #f97316;
   color: #fff;
-  background: #f97316 linear-gradient(#f97316, #f97316);
 }
 
 .empty-state {
