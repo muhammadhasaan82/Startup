@@ -49,7 +49,7 @@ export const Footer: React.FC = () => {
             <div className="flex items-center">
               <div className="bg-black px-3 py-2 rounded-md flex items-center space-x-2">
                 <img src={logo} alt="NexGenTeck Logo" className="h-8 w-auto object-contain" style={{ maxHeight: '32px', maxWidth: '100px' }} />
-                <span className="text-xl font-black tracking-tight" style={{ fontWeight: 900, textRendering: 'optimizeLegibility' }}>
+                <span className="text-2xl font-extrabold tracking-normal">
                   <span className="text-orange-500">NexGen</span>
                   <span className="text-white">Teck</span>
                 </span>
