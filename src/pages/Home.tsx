@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
 import { ArrowRight, CheckCircle2, Quote, Star, X } from 'lucide-react';
@@ -600,7 +601,7 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {isDemoOpen && (
+      {isDemoOpen && typeof document !== 'undefined' && createPortal(
         <div
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 p-4"
           onClick={() => setIsDemoOpen(false)}
@@ -617,7 +618,7 @@ export const Home: React.FC = () => {
             >
               <X className="w-5 h-5" />
             </button>
-            <div className="relative w-full aspect-[3/2] rounded-lg overflow-hidden">
+            <div className="relative w-full rounded-lg overflow-hidden" style={{ aspectRatio: '3 / 2' }}>
               <iframe
                 className="absolute inset-0 w-full h-full"
                 src="https://www.youtube.com/embed/MdOanVqkeG8?autoplay=1&rel=0"
@@ -628,7 +629,8 @@ export const Home: React.FC = () => {
               />
             </div>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </div>
   );
