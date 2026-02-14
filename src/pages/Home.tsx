@@ -249,7 +249,7 @@ export const Home: React.FC = () => {
                           {/* Primary CTA Button */}
                           <Link
                             to={slide.ctaLink}
-                            className="inline-flex items-center space-x-2 bg-white text-gray-900 px-8 py-3 rounded-full hover:bg-gray-100 transition-all transform hover:scale-105 font-bold text-base shadow-lg"
+                            className="inline-flex items-center space-x-2 bg-white text-gray-900 px-8 py-3 rounded-full hover:bg-gray-100 transition-all transform hover:scale-105 font-extrabold text-base shadow-lg"
                           >
                             <span>{slide.ctaText}</span>
                             <ArrowRight className="w-5 h-5" />
