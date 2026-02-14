@@ -53,11 +53,6 @@ export const Header: React.FC = () => {
     { name: 'services.3dgraphics', path: '/services/3d-graphics' },
     { name: 'services.videoediting', path: '/services/video-editing' },
   ];
-  const visibleLanguageCount = Math.ceil(languages.length / 2);
-  const desktopLanguageListHeight = visibleLanguageCount * 44;
-  const handleLanguageScroll = (event: React.WheelEvent<HTMLDivElement>) => {
-    event.stopPropagation();
-  };
 
   // Dynamic classes for dark mode support
   const headerBg = theme === 'dark'
@@ -154,30 +149,26 @@ export const Header: React.FC = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-full right-0 mt-2 w-44 z-[60]"
+                    className="absolute top-full right-0 mt-2 w-44 z-[70]"
                   >
-                    <div className={`${dropdownBg} rounded-lg shadow-xl overflow-hidden`}>
-                      <div
-                        className="language-scrollbar overflow-y-scroll py-2 pr-1"
-                        style={{ height: `${desktopLanguageListHeight}px` }}
-                        onWheel={handleLanguageScroll}
-                        onTouchMove={(event) => event.stopPropagation()}
-                      >
-                        {languages.map((lang) => (
-                          <button
-                            key={lang.code}
-                            onClick={() => {
-                              setLanguage(lang.code);
-                              setIsLangOpen(false);
-                            }}
-                            className={`w-full text-left px-4 py-2 ${dropdownHover} transition-colors flex items-center space-x-2 ${language === lang.code ? 'text-orange-500' : textColor
-                              }`}
-                          >
-                            <img src={lang.flag} alt={lang.name} className="w-5 h-4 object-cover rounded-sm" />
-                            <span>{lang.name}</span>
-                          </button>
-                        ))}
-                      </div>
+                    <div
+                      className={`language-scrollbar ${dropdownBg} rounded-lg shadow-xl py-2 overflow-y-auto overflow-x-hidden`}
+                      style={{ maxHeight: 'min(280px, calc(100vh - 120px))' }}
+                    >
+                      {languages.map((lang) => (
+                        <button
+                          key={lang.code}
+                          onClick={() => {
+                            setLanguage(lang.code);
+                            setIsLangOpen(false);
+                          }}
+                          className={`w-full text-left px-4 py-2 ${dropdownHover} transition-colors flex items-center space-x-2 ${language === lang.code ? 'text-orange-500' : textColor
+                            }`}
+                        >
+                          <img src={lang.flag} alt={lang.name} className="w-5 h-4 object-cover rounded-sm" />
+                          <span>{lang.name}</span>
+                        </button>
+                      ))}
                     </div>
                   </motion.div>
                 )}
@@ -250,7 +241,10 @@ export const Header: React.FC = () => {
                 {/* Mobile Theme Toggle */}
                 {/* Mobile Language Selector */}
                 <div className={`pt-4 border-t ${borderColor}`}>
-                  <div className="grid grid-cols-2 gap-2 max-h-64 overflow-y-auto pr-1">
+                  <div
+                    className="language-scrollbar grid grid-cols-2 gap-2 overflow-y-auto overflow-x-hidden pr-1"
+                    style={{ maxHeight: 'min(280px, calc(100vh - 220px))' }}
+                  >
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
