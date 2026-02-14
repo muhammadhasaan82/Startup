@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { motion } from 'motion/react';
-import { Users, Target, Award, Heart, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Users, Target, Award, Heart } from 'lucide-react';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { useLanguage } from '../contexts/LanguageContext';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
@@ -18,63 +18,6 @@ export const About: React.FC = () => {
       }
     }
   }, [location]);
-
-  const team = [
-    {
-      name: 'John Anderson',
-      role: 'CEO & Founder',
-      image: 'https://images.unsplash.com/photo-1762341118883-13bbd9d79927?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzcyUyMHBlcnNvbnxlbnwxfHx8fDE3NjQ0MzcwMTV8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      bio: '15+ years of experience in digital transformation and technology leadership',
-      linkedin: '#',
-      twitter: '#',
-      email: 'john@nexgentech.com',
-    },
-    {
-      name: 'Sarah Mitchell',
-      role: 'Chief Technology Officer',
-      image: 'https://images.unsplash.com/photo-1762341118883-13bbd9d79927?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzcyUyMHBlcnNvbnxlbnwxfHx8fDE3NjQ0MzcwMTV8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      bio: 'Expert in cloud architecture and enterprise software development',
-      linkedin: '#',
-      twitter: '#',
-      email: 'sarah@nexgentech.com',
-    },
-    {
-      name: 'Michael Chen',
-      role: 'Creative Director',
-      image: 'https://images.unsplash.com/photo-1762341118883-13bbd9d79927?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzcyUyMHBlcnNvbnxlbnwxfHx8fDE3NjQ0MzcwMTV8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      bio: 'Award-winning designer with a passion for creating exceptional user experiences',
-      linkedin: '#',
-      twitter: '#',
-      email: 'michael@nexgentech.com',
-    },
-    {
-      name: 'Emily Rodriguez',
-      role: 'Head of Marketing',
-      image: 'https://images.unsplash.com/photo-1762341118883-13bbd9d79927?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzcyUyMHBlcnNvbnxlbnwxfHx8fDE3NjQ0MzcwMTV8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      bio: 'Digital marketing strategist specializing in SEO and social media growth',
-      linkedin: '#',
-      twitter: '#',
-      email: 'emily@nexgentech.com',
-    },
-    {
-      name: 'David Thompson',
-      role: 'Lead Developer',
-      image: 'https://images.unsplash.com/photo-1762341118883-13bbd9d79927?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzcyUyMHBlcnNvbnxlbnwxfHx8fDE3NjQ0MzcwMTV8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      bio: 'Full-stack developer with expertise in modern web technologies',
-      linkedin: '#',
-      twitter: '#',
-      email: 'david@nexgentech.com',
-    },
-    {
-      name: 'Lisa Wang',
-      role: 'Product Manager',
-      image: 'https://images.unsplash.com/photo-1762341118883-13bbd9d79927?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzcyUyMHBlcnNvbnxlbnwxfHx8fDE3NjQ0MzcwMTV8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      bio: 'Driving product innovation and ensuring exceptional customer satisfaction',
-      linkedin: '#',
-      twitter: '#',
-      email: 'lisa@nexgentech.com',
-    },
-  ];
 
   const values = [
     {
@@ -174,56 +117,6 @@ export const About: React.FC = () => {
                   </div>
                   <h3 className="text-xl text-gray-900 mb-3">{t(value.titleKey)}</h3>
                   <p className="text-gray-600">{t(value.descKey)}</p>
-                </motion.div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section id="team" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <AnimatedSection className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl text-gray-900 mb-4">{t('about.team')}</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              {t('about.team.subtitle')}
-            </p>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <AnimatedSection key={index} delay={index * 0.1}>
-                <motion.div
-                  whileHover={{ y: -10 }}
-                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all"
-                >
-                  <div className="relative h-80 overflow-hidden">
-                    <ImageWithFallback
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <h3 className="text-2xl text-white mb-1">{member.name}</h3>
-                      <p className="text-blue-400">{member.role}</p>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <p className="text-gray-600 mb-4">{member.bio}</p>
-                    <div className="flex space-x-4">
-                      <a href={member.linkedin} className="text-gray-400 hover:text-orange-500 transition-colors">
-                        <Linkedin className="w-5 h-5" />
-                      </a>
-                      <a href={member.twitter} className="text-gray-400 hover:text-orange-500 transition-colors">
-                        <Twitter className="w-5 h-5" />
-                      </a>
-                      <a href={`mailto:${member.email}`} className="text-gray-400 hover:text-orange-500 transition-colors">
-                        <Mail className="w-5 h-5" />
-                      </a>
-                    </div>
-                  </div>
                 </motion.div>
               </AnimatedSection>
             ))}
