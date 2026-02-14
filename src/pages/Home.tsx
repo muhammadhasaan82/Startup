@@ -606,7 +606,7 @@ export const Home: React.FC = () => {
           onClick={() => setIsDemoOpen(false)}
         >
           <div
-            className="relative w-[95%] md:w-[90%] max-w-[1000px] bg-black rounded-xl p-5 border border-orange-500/30 shadow-2xl"
+            className="relative w-[95%] md:w-[85%] lg:w-[70%] max-w-[1400px] bg-black rounded-xl p-5 border border-orange-500/30 shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <button
@@ -617,7 +617,7 @@ export const Home: React.FC = () => {
             >
               <X className="w-5 h-5" />
             </button>
-            <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+            <div className="relative w-full aspect-square rounded-lg overflow-hidden">
               <iframe
                 className="absolute inset-0 w-full h-full"
                 src="https://www.youtube.com/embed/MdOanVqkeG8?autoplay=1&rel=0"
