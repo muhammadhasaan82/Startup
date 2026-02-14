@@ -53,6 +53,7 @@ export const Header: React.FC = () => {
     { name: 'services.3dgraphics', path: '/services/3d-graphics' },
     { name: 'services.videoediting', path: '/services/video-editing' },
   ];
+  const visibleLanguageCount = Math.ceil(languages.length / 2);
 
   // Dynamic classes for dark mode support
   const headerBg = theme === 'dark'
@@ -149,8 +150,9 @@ export const Header: React.FC = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                className={`absolute top-full right-0 mt-2 w-40 ${dropdownBg} rounded-lg shadow-xl py-2 max-h-56 overflow-y-auto`}
-              >
+                    className={`absolute top-full right-0 mt-2 w-40 ${dropdownBg} rounded-lg shadow-xl py-2 overflow-y-auto`}
+                    style={{ maxHeight: `${visibleLanguageCount * 40}px` }}
+                  >
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
