@@ -603,24 +603,27 @@ export const Home: React.FC = () => {
 
       {isDemoOpen && typeof document !== 'undefined' && createPortal(
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 p-4"
+          className="fixed inset-0 flex items-center justify-center bg-black/90 p-4"
+          style={{ zIndex: 99999 }}
           onClick={() => setIsDemoOpen(false)}
         >
           <div
-            className="relative w-[95vw] md:w-[720px] max-w-[720px] bg-black rounded-xl p-4 md:p-5 border border-orange-500/30 shadow-2xl"
+            className="relative w-full max-w-4xl bg-black rounded-xl p-4 md:p-6 border border-orange-500/30 shadow-2xl"
+            style={{ zIndex: 100000 }}
             onClick={(event) => event.stopPropagation()}
           >
             <button
               type="button"
               onClick={() => setIsDemoOpen(false)}
-              className="absolute top-3 right-3 z-10 p-2.5 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition-colors shadow-lg"
+              className="absolute -top-3 -right-3 z-[100001] p-2 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition-colors shadow-lg"
               aria-label="Close video"
             >
-              <X className="w-5 h-5" />
+              <X className="w-6 h-6" />
             </button>
-            <div className="relative w-full rounded-lg overflow-hidden" style={{ aspectRatio: '3 / 2' }}>
+            <div className="relative w-full bg-black rounded-lg overflow-hidden" style={{ paddingBottom: '56.25%' }}>
               <iframe
-                className="absolute inset-0 w-full h-full"
+                className="absolute top-0 left-0 w-full h-full"
+                style={{ zIndex: 1 }}
                 src="https://www.youtube.com/embed/MdOanVqkeG8?autoplay=1&rel=0"
                 title="NexGenTeck Quick Demo"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
