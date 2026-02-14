@@ -43,8 +43,9 @@ export const Footer: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-4"
+            className="space-y-3"
           >
+            {/* Logo and Brand Name */}
             <div className="flex items-center">
               <div className="bg-black px-3 py-2 rounded-md flex items-center space-x-2">
                 <img src={logo} alt="NexGenTeck Logo" className="h-8 w-auto object-contain" style={{ maxHeight: '32px', maxWidth: '100px' }} />
@@ -54,15 +55,18 @@ export const Footer: React.FC = () => {
                 </span>
               </div>
             </div>
-            <p className="text-gray-400">
+            {/* Motto aligned with logo left edge */}
+            <p className="text-gray-400 text-sm pl-1">
               {t('footer.tagline')}
             </p>
-            <div className="flex space-x-4">
+            {/* Social Media Icons aligned with logo left edge */}
+            <div className="flex space-x-4 pl-1">
               <a
                 href="https://www.facebook.com/profile.php?id=61585558202243"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orange-500 transition-colors"
+                aria-label="Facebook"
               >
                 <Facebook className="w-5 h-5" />
               </a>
@@ -71,6 +75,7 @@ export const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orange-500 transition-colors"
+                aria-label="X (Twitter)"
               >
                 <XLogo className="w-5 h-5" />
               </a>
@@ -79,6 +84,7 @@ export const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orange-500 transition-colors"
+                aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
               </a>
@@ -87,6 +93,7 @@ export const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orange-500 transition-colors"
+                aria-label="YouTube"
               >
                 <Youtube className="w-5 h-5" />
               </a>
