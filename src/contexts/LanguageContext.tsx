@@ -49,7 +49,7 @@ const translations: Record<Language, Record<string, string>> = {
     'services.title': 'Our Services',
     'services.subtitle': 'Comprehensive digital solutions tailored to your needs',
     'services.ecommerce': 'E-commerce Development',
-    'services.ecommerce.desc': 'Build powerful online stores with seamless shopping experiences',
+    'services.ecommerce.desc': 'Build a powerful, seamless online store.',
     'services.web': 'Website Development',
     'services.web.desc': 'Custom websites that drive engagement and conversions',
     'services.seo': 'Search Engine Optimization',
