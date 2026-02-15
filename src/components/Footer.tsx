@@ -43,60 +43,59 @@ export const Footer: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-3 items-start text-left"
+            className="flex flex-col items-start space-y-3"
           >
             {/* Logo and Brand Name */}
-            <div className="flex items-center justify-start">
-              <div className="bg-black px-3 py-2 rounded-md flex items-center space-x-2">
-                <img src={logo} alt="NexGenTeck Logo" className="h-8 w-auto object-contain" style={{ maxHeight: '32px', maxWidth: '100px' }} />
-                <span className="text-2xl font-extrabold tracking-normal">
-                  <span className="text-orange-500">NexGen</span>
-                  <span className="text-white">Teck</span>
-                </span>
-              </div>
+            <div className="bg-black px-3 py-2 rounded-md flex items-center space-x-2">
+              <img src={logo} alt="NexGenTeck Logo" className="h-8 w-auto object-contain" style={{ maxHeight: '32px', maxWidth: '100px' }} />
+              <span className="text-2xl font-extrabold tracking-normal">
+                <span className="text-orange-500">NexGen</span>
+                <span className="text-white">Teck</span>
+              </span>
             </div>
-            {/* Motto aligned with logo left edge */}
-            <p className="text-gray-400 text-sm text-left pl-3">
-              {t('footer.tagline')}
-            </p>
-            {/* Social Media Icons aligned with logo left edge */}
-            <div className="flex space-x-4 justify-start pl-3">
-              <a
-                href="https://www.facebook.com/profile.php?id=61585558202243"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-orange-500 transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="https://x.com/NexGenTeck"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-orange-500 transition-colors"
-                aria-label="X (Twitter)"
-              >
-                <XLogo className="w-5 h-5" />
-              </a>
-              <a
-                href="https://www.instagram.com/nexgenteck?igsh=MWxhcW93ejM3bjZzcQ=="
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-orange-500 transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="https://www.youtube.com/@NexGenTeckcom"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-orange-500 transition-colors"
-                aria-label="YouTube"
-              >
-                <Youtube className="w-5 h-5" />
-              </a>
+            {/* Motto and Social Icons — aligned with logo icon (offset by px-3 = 12px) */}
+            <div style={{ paddingLeft: '12px' }} className="space-y-3">
+              <p className="text-gray-400 text-sm">
+                {t('footer.tagline')}
+              </p>
+              <div className="flex space-x-4">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61585558202243"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-orange-500 transition-colors"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://x.com/NexGenTeck"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-orange-500 transition-colors"
+                  aria-label="X (Twitter)"
+                >
+                  <XLogo className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.instagram.com/nexgenteck?igsh=MWxhcW93ejM3bjZzcQ=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-orange-500 transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.youtube.com/@NexGenTeckcom"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-orange-500 transition-colors"
+                  aria-label="YouTube"
+                >
+                  <Youtube className="w-5 h-5" />
+                </a>
+              </div>
             </div>
           </motion.div>
 
