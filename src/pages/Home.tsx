@@ -251,9 +251,9 @@ export const Home: React.FC = () => {
                             to={slide.ctaLink}
                             className="inline-flex items-center space-x-2 bg-white px-8 py-3 rounded-full hover:bg-gray-100 transition-all transform hover:scale-105 text-base shadow-lg"
                             style={{
-                              color: '#000000',
-                              fontWeight: 800,
-                              letterSpacing: '0.025em',
+                              color: '#1a1a1a',
+                              fontWeight: 600,
+                              letterSpacing: '0.02em',
                             }}
                           >
                             <span>{slide.ctaText}</span>
@@ -266,13 +266,12 @@ export const Home: React.FC = () => {
                               onClick={() => setIsDemoOpen(true)}
                               className="inline-flex items-center space-x-2 px-8 py-3 rounded-full hover:shadow-[0_0_25px_rgba(249,115,22,0.5)] transition-all transform hover:scale-105"
                               style={{
-                                border: '2.5px solid #F97316',
+                                border: '2px solid #F97316',
                                 color: '#F97316',
                                 backgroundColor: 'transparent',
-                                fontWeight: 800,
+                                fontWeight: 600,
                                 fontSize: '1rem',
-                                letterSpacing: '0.025em',
-                                textShadow: '0 0 8px rgba(249, 115, 22, 0.3)',
+                                letterSpacing: '0.02em',
                               }}
                             >
                               <span>{slide.ctaSecondary}</span>
