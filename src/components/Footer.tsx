@@ -56,11 +56,11 @@ export const Footer: React.FC = () => {
               </div>
             </div>
             {/* Motto aligned with logo left edge */}
-            <p className="text-gray-400 text-sm text-left">
+            <p className="text-gray-400 text-sm text-left pl-3">
               {t('footer.tagline')}
             </p>
             {/* Social Media Icons aligned with logo left edge */}
-            <div className="flex space-x-4 justify-start">
+            <div className="flex space-x-4 justify-start pl-3">
               <a
                 href="https://www.facebook.com/profile.php?id=61585558202243"
                 target="_blank"
