@@ -259,7 +259,7 @@ export const Home: React.FC = () => {
                             <button
                               type="button"
                               onClick={() => setIsDemoOpen(true)}
-                              className="inline-flex items-center space-x-2 bg-transparent border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white/10 transition-all font-bold text-base"
+                              className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-orange-600 border-2 border-orange-500 text-white px-8 py-3 rounded-full hover:from-orange-600 hover:to-orange-700 hover:border-orange-600 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] transition-all transform hover:scale-105 font-bold text-base shadow-lg"
                             >
                               <span>{slide.ctaSecondary}</span>
                             </button>
