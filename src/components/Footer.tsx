@@ -43,10 +43,10 @@ export const Footer: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-3"
+            className="space-y-3 items-start text-left"
           >
             {/* Logo and Brand Name */}
-            <div className="flex items-center">
+            <div className="flex items-center justify-start">
               <div className="bg-black px-3 py-2 rounded-md flex items-center space-x-2">
                 <img src={logo} alt="NexGenTeck Logo" className="h-8 w-auto object-contain" style={{ maxHeight: '32px', maxWidth: '100px' }} />
                 <span className="text-2xl font-extrabold tracking-normal">
@@ -56,11 +56,11 @@ export const Footer: React.FC = () => {
               </div>
             </div>
             {/* Motto aligned with logo left edge */}
-            <p className="text-gray-400 text-sm pl-1">
+            <p className="text-gray-400 text-sm text-left">
               {t('footer.tagline')}
             </p>
             {/* Social Media Icons aligned with logo left edge */}
-            <div className="flex space-x-4 pl-1">
+            <div className="flex space-x-4 justify-start">
               <a
                 href="https://www.facebook.com/profile.php?id=61585558202243"
                 target="_blank"
