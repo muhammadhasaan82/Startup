@@ -53,8 +53,8 @@ export const Footer: React.FC = () => {
                 <span className="text-white">Teck</span>
               </span>
             </div>
-            {/* Motto and Social Icons — aligned with logo icon (offset by px-3 = 12px) */}
-            <div style={{ paddingLeft: '12px' }} className="space-y-3">
+            {/* Motto and Social Icons — aligned with NexGenTeck text (px-3 + logo w + gap) */}
+            <div style={{ paddingLeft: '52px' }} className="space-y-3">
               <p className="text-gray-400 text-sm">
                 {t('footer.tagline')}
               </p>
