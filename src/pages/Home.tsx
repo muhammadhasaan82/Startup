@@ -86,13 +86,6 @@ export const Home: React.FC = () => {
 
   const services = [
     {
-      titleKey: 'services.ecommerce',
-      descKey: 'services.ecommerce.desc',
-      icon: '🛒',
-      link: '/services/ecommerce',
-      image: 'https://images.unsplash.com/photo-1727407209320-1fa6ae60ee05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY29tbWVyY2UlMjBzaG9wcGluZ3xlbnwxfHx8fDE3NjQzNDQ4NTV8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    },
-    {
       titleKey: 'services.web',
       descKey: 'services.web.desc',
       icon: '💻',
@@ -376,15 +369,15 @@ export const Home: React.FC = () => {
               </p>
             </AnimatedSection>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((service, index) => (
-                <AnimatedSection key={index} delay={index * 0.1}>
-                  <Link to={service.link}>
+                <AnimatedSection key={index} delay={index * 0.1} className="h-full">
+                  <Link to={service.link} className="block h-full">
                     <motion.div
                       whileHover={{ y: -10 }}
-                      className="bg-[#1a1a1a] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group border border-white/5"
+                      className="bg-[#1a1a1a] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group border border-white/5 h-full flex flex-col"
                     >
-                      <div className="relative h-48 overflow-hidden">
+                      <div className="relative h-48 flex-shrink-0 overflow-hidden">
                         <ImageWithFallback
                           src={service.image}
                           alt={t(service.titleKey)}
@@ -393,10 +386,10 @@ export const Home: React.FC = () => {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                         <div className="absolute bottom-4 left-4 text-4xl">{service.icon}</div>
                       </div>
-                      <div className="p-6">
+                      <div className="p-6 flex flex-col flex-1">
                         <h3 className="text-xl text-white mb-3">{t(service.titleKey)}</h3>
-                        <p className="text-gray-400 mb-4">{t(service.descKey)}</p>
-                        <div className="flex items-center text-orange-500 group-hover:text-orange-600 transition-colors">
+                        <p className="text-gray-400 mb-4 flex-1">{t(service.descKey)}</p>
+                        <div className="flex items-center text-orange-500 group-hover:text-orange-600 transition-colors mt-auto">
                           <span className="mr-2">{t('common.learnMore')}</span>
                           <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                         </div>
